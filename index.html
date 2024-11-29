@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1F0065">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#1F0065">
+  <link rel="manifest" href="/manifest.json">
   <title>Growmatic</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="styles.css">
@@ -28,7 +31,6 @@
   <header class="absolute top-0 w-full py-4">
     <div class="container mx-auto flex justify-center">
       <img src="logo.svg" alt="Logo Growmatic" class="h-12 md:h-16">
-      <!-- Jeśli masz logo jako SVG lub inny format, możesz dostosować tag <img> odpowiednio -->
     </div>
   </header>
   <!-- Content Section -->
@@ -49,7 +51,7 @@
           <div class="flex flex-col sm:flex-row gap-4">
             <!-- CTA Button 1: Scroll to Contact -->
             <a href="#contact" class="inline-block px-6 py-3 bg-gradient-to-r from-[#7F8CFF] to-[#EBBAFF] text-black font-semibold rounded-lg shadow-md hover:from-[#6a7ce0] hover:to-[#c0aaff] transition duration-300">
-              Skontaktuj się z nami
+              Bezpłatna konsultacja
             </a>
             
             <!-- CTA Button 2: Download Materials -->
@@ -200,7 +202,7 @@
     
     <!-- Formularz kontaktowy -->
     <div class="bg-[#0B0B10] shadow-lg rounded-xl p-8 max-w-lg w-full mx-4 z-20 md:ml-20">
-      <h2 class="text-3xl font-bold text-white mb-6 text-center">Skontaktuj się z nami</h2>
+      <h2 class="text-3xl font-bold text-white mb-6 text-center">Umów się na bezpłatną konsultację</h2>
       <form action="#" method="POST" class="space-y-6">
         <!-- Imię -->
         <div>
@@ -252,6 +254,7 @@
         </div>
       </form>
     </div>
+    <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-black"></div>
   </section>
 </body>
 </html>
