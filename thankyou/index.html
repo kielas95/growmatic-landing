@@ -23,13 +23,15 @@
 </head>
 <body class="relative min-h-screen bg-black text-gray-100 flex flex-col">
 <!-- Fallback Background -->
-  <div class="absolute inset-0 -z-20 overflow-hidden">
+  <div class="absolute inset-0 -z-20 overflow-hidden flex items-end">
     <img 
       src="../fallback-bg.png" 
       alt="" 
-      class="w-[150%] h-[90%] md:w-[80%] lg:w-[60%] object-scale-down border-none position-absolute -mt-80 opacity-0 transition-opacity duration-1000 ease-in"
+      class="w-[150%] h-[90%] md:w-[80%] lg:w-[60%] -mt-80 object-scale-down border-none opacity-0 transition-opacity duration-1000 ease-in"
       aria-hidden="true"
     >
+    <!-- Gradient overlay dla fallback -->
+    <div class="absolute bottom-[400px] left-0 w-full h-96 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
   </div>
 
   <!-- WebGL Background -->
@@ -56,12 +58,20 @@
     <div class="flex flex-col items-center justify-center gap-8 w-full max-w-3xl mx-auto">
       <!-- Tekst -->
       <div class="w-full bg-black/50 p-8 rounded-xl backdrop-blur-md border border-white/10">
-        <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">
-          Gratulacje! Zakwalifikowałeś się do <span class="text-[#7F8CFF]">60 min</span> bezpłatnej konsultacji!
+        <!-- Podziękowanie -->
+        <div class="text-center">
+          <p class="text-xl md:text-2xl text-white mb-4">
+            Dziękujemy za pobranie naszej checklisty!<br>
+            <span class="text-gray-300">Materiał jest w drodze na Twoją skrzynkę.</span>
+          </p>
+          <div class="w-24 h-px bg-gradient-to-r from-transparent via-gray-500 to-transparent mx-auto"></div>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-white mt-4 mb-4">
+          Gratulacje! Zakwalifikowałeś się do <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#EBBAFF] to-[#7F8CFF]">60 min</span> bezpłatnej konsultacji!
         </h1>
         <p class="text-lg md:text-xl text-gray-300 mb-6 leading-relaxed">
-          Jeśli chcesz podnieść <span class="text-[#7F8CFF] font-bold">konwersje o 30%</span> jednocześnie redukując koszt pozyskania klienta, 
-          porozmawiajmy o wdrożeniu <span class="text-[#FF7FEB] font-bold">Zautomatyzowanego Działu Sprzedaży</span> w Twojej firmie.
+          Jeśli chcesz podnieść <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#EBBAFF] to-[#7F8CFF] font-bold">konwersje o 30%</span> jednocześnie redukując koszt pozyskania klienta, 
+          porozmawiajmy o wdrożeniu <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#DECFFF] to-[#F7A3FF] font-bold">Zautomatyzowanego Działu Sprzedaży</span> w Twojej firmie.
         </p>
         <!-- Video VSL -->
         <div class="mt-6 rounded-lg overflow-hidden">
