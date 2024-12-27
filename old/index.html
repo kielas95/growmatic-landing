@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1F0065">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#1F0065">
+  <link rel="manifest" href="/manifest.json">
+  <title>growmatic</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <style>
+    body {
+      font-family: 'Outfit', sans-serif;
+    }
+    .noscrollbar {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .noscrollbar::-webkit-scrollbar {
+      display: none;
+    }
+  </style></head>
+<body class="relative h-screen bg-black text-white">
+    <!-- Fallback Background -->
+    <div class="absolute inset-0 -z-20 overflow-hidden">
+      <img 
+        src="fallback-bg.png" 
+        alt="" 
+        class="w-[150%] h-[130%] md:w-[80%] lg:w-[60%] object-scale-down border-none position-absolute bottom-0 opacity-0 transition-opacity duration-1000 ease-in""
+        aria-hidden="true"
+      >
+    </div>
+
+  <!-- WebGL Background -->
+  <div class="absolute inset-0 -z-10 overflow-x-hidden transition-opacity duration-1000 ease-in opacity-0 noscrollbar">
+    <iframe 
+        src="data:text/html;base64,PGh0bWw+CiAgICAgICAgPGhlYWQ+CiAgICAgICAgICAgIDxtZXRhIG5hbWU9InZpZXdwb3J0IiBjb250ZW50PSJ3aWR0aD1kZXZpY2Utd2lkdGgsIGluaXRpYWwtc2NhbGU9MSI+CiAgICAgICAgICAgIDxzdHlsZT4KICAgICAgICAgICAgICAgIGh0bWwsIGJvZHl7CiAgICAgICAgICAgICAgICAgICAgbWFyZ2luOiAwOwogICAgICAgICAgICAgICAgICAgIHBhZGRpbmc6IDA7CiAgICAgICAgICAgICAgICAgICAgd2lkdGg6IDEwMCU7CiAgICAgICAgICAgICAgICAgICAgaGVpZ2h0OiAxMDAlOwogICAgICAgICAgICAgICAgICAgIGJvcmRlcjogMDsKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgPC9zdHlsZT4KICAgICAgICAgICAgPHNjcmlwdCB0eXBlPSJpbXBvcnRtYXAiPgp7CiAgICAiaW1wb3J0cyI6IHsKICAgICAgICAicmVhY3QiOiAiaHR0cHM6Ly9jZG4uc2t5cGFjay5kZXYvcmVhY3RAMTguMC4yIiwKICAgICAgICAicmVhY3QtZG9tIjogImh0dHBzOi8vY2RuLnNreXBhY2suZGV2L3JlYWN0LWRvbUAxOC4wLjIiLAogICAgICAgICJ0aHJlZSI6ICJodHRwczovL2Nkbi5za3lwYWNrLmRldi90aHJlZUAwLjE0OC4wIiwKICAgICAgICAicmVhY3QtdGhyZWUvZmliZXIiOiAiaHR0cHM6Ly9jZG4uc2t5cGFjay5kZXYvQHJlYWN0LXRocmVlL2ZpYmVyQDcuMC4yNCIKICAgIH0KfQo8L3NjcmlwdD4KPHN0eWxlPgogICAgaHRtbCwgYm9keXsKICAgICAgICBtYXJnaW46IDA7CiAgICAgICAgcGFkZGluZzogMDsKICAgICAgICB3aWR0aDogMTAwJTsKICAgICAgICBoZWlnaHQ6IDEwMCU7CiAgICAgICAgYm9yZGVyOiAwOwogICAgfQogICAgLm50LWVtYmVkewogICAgICAgIHdpZHRoOiAxMDAlOwogICAgICAgIGhlaWdodDogMTAwJTsKICAgIH0KICAgIC5udC1lbWJlZCBjYW52YXN7CiAgICAgICAgd2lkdGg6IDEwMCU7CiAgICAgICAgaGVpZ2h0OiAxMDAlOwogICAgfQo8L3N0eWxlPgo8c2NyaXB0IHR5cGU9Im1vZHVsZSI+CiAgICBpbXBvcnQgUmVhY3QsIHt1c2VSZWYsdXNlTWVtb30gZnJvbSAncmVhY3QnOwogICAgaW1wb3J0IFJlYWN0RE9NIGZyb20gJ3JlYWN0LWRvbSc7CiAgICBpbXBvcnQgKiBhcyBUSFJFRSBmcm9tICd0aHJlZSc7CiAgICBpbXBvcnQge0NhbnZhcywgdXNlRnJhbWUsIHVzZVRocmVlfSBmcm9tICdyZWFjdC10aHJlZS9maWJlcic7CgogICAgbGV0IGVtYmVkUm9vdCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpOwogICAgZW1iZWRSb290LmNsYXNzTmFtZSA9ICJudC1lbWJlZCI7CiAgICBkb2N1bWVudC5ib2R5LmFwcGVuZENoaWxkKGVtYmVkUm9vdCk7CgogICAgY29uc3QgVGV4dHVyZU1lc2ggPSAoKSA9PiB7CiAgICAgICAgY29uc3QgbWVzaCA9IHVzZVJlZihudWxsKQogICAgICAgIHVzZUZyYW1lKHN0YXRlID0+IHsKICAgICAgICAgICAgY29uc3QgeyBjbG9jaywgbW91c2UsIGdsLCBzY2VuZSwgY2FtZXJhIH0gPSBzdGF0ZQogICAgICAgICAgICBpZihtZXNoLmN1cnJlbnQpewogICAgICAgICAgICAgICAgbWVzaC5jdXJyZW50Lm1hdGVyaWFsLnVuaWZvcm1zLnVfbW91c2UudmFsdWUgPSBbbW91c2UueCAvIDIgKyAwLjUsIG1vdXNlLnkgLyAyICsgMC41XQogICAgICAgICAgICAgICAgbWVzaC5jdXJyZW50Lm1hdGVyaWFsLnVuaWZvcm1zLnVfdGltZS52YWx1ZSA9IGNsb2NrLmdldEVsYXBzZWRUaW1lKCkKICAgICAgICAgICAgICAgIGxldCBjID0gZ2wuZG9tRWxlbWVudC5nZXRCb3VuZGluZ0NsaWVudFJlY3QoKQogICAgICAgICAgICAgICAgbWVzaC5jdXJyZW50Lm1hdGVyaWFsLnVuaWZvcm1zLnVfcmVzb2x1dGlvbi52YWx1ZSA9IFtjLndpZHRoLGMuaGVpZ2h0XQogICAgICAgICAgICB9CiAgICAgICAgfSkKICAgICAgICAKICAgICAgICByZXR1cm4gUmVhY3QuY3JlYXRlRWxlbWVudCgnbWVzaCcsCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAgIHJlZjptZXNoLAogICAgICAgICAgICAgICAgcG9zaXRpb246IFswLDAsMF0sCiAgICAgICAgICAgICAgICBzY2FsZTogMSwKICAgICAgICAgICAgICAgIHJvdGF0aW9uOiBbMCwwLDBdCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgIFJlYWN0LmNyZWF0ZUVsZW1lbnQoJ3BsYW5lR2VvbWV0cnknLHthcmdzOlsyNDAsNTgwXX0pLCAKICAgICAgICAgICAgUmVhY3QuY3JlYXRlRWxlbWVudCgnc2hhZGVyTWF0ZXJpYWwnLHsKICAgICAgICAgICAgICAgIGZyYWdtZW50U2hhZGVyOiBgLy8gRnJhZ21lbnQgc2hhZGVyCgoKCi8vIFVuaWZvcm1zCgp1bmlmb3JtIHZlYzIgdV9yZXNvbHV0aW9uOwoKdW5pZm9ybSB2ZWMyIHVfbW91c2U7Cgp1bmlmb3JtIGZsb2F0IHVfdGltZTsKCnVuaWZvcm0gdmVjNCB1X2NvbG9yc1s0XTsKCnVuaWZvcm0gZmxvYXQgdV9ibHVyOyAKCnVuaWZvcm0gYm9vbCB1X2FuaW1hdGU7Cgp1bmlmb3JtIGZsb2F0IHVfYW5pbWF0ZV9zcGVlZDsKCnVuaWZvcm0gZmxvYXQgdV9mcmVxdWVuY3k7CgogICAgCgojZGVmaW5lIFMoYSxiLHQpIHNtb290aHN0ZXAoYSxiLHQpCgoKCgoKI2lmbmRlZiBTUkdCX0VQU0lMT04gCiNkZWZpbmUgU1JHQl9FUFNJTE9OIDAuMDAwMDAwMDEKI2VuZGlmCgojaWZuZGVmIEZOQ19TUkdCMlJHQgojZGVmaW5lIEZOQ19TUkdCMlJHQgoKCgoKZmxvYXQgc3JnYjJyZ2IoZmxvYXQgY2hhbm5lbCkgewogICAgcmV0dXJuIChjaGFubmVsIDwgMC4wNDA0NSkgPyBjaGFubmVsICogMC4wNzczOTkzODA4IDogcG93KChjaGFubmVsICsgMC4wNTUpICogMC45NDc4NjcyOTg1NzgxOTksIDIuNCk7Cn0KCnZlYzMgc3JnYjJyZ2IodmVjMyBzcmdiKSB7CiAgICByZXR1cm4gdmVjMyhzcmdiMnJnYihzcmdiLnIgKyBTUkdCX0VQU0lMT04pLCAKICAgICAgICAgICAgICAgIHNyZ2IycmdiKHNyZ2IuZyArIFNSR0JfRVBTSUxPTiksICAgICAgICAgICAgICAgICBzcmdiMnJnYihzcmdiLmIgKyBTUkdCX0VQU0lMT04pKTsKfQoKdmVjNCBzcmdiMnJnYih2ZWM0IHNyZ2IpIHsKICAgIHJldHVybiB2ZWM0KHNyZ2IycmdiKHNyZ2IucmdiKSwgc3JnYi5hKTsKfQoKI2VuZGlmCgoKI2lmICFkZWZpbmVkKEZOQ19TQVRVUkFURSkgJiYgIWRlZmluZWQoc2F0dXJhdGUpCiNkZWZpbmUgRk5DX1NBVFVSQVRFCiNkZWZpbmUgc2F0dXJhdGUoeCkgY2xhbXAoeCwgMC4wLCAxLjApCiNlbmRpZgoKCgojaWZuZGVmIFNSR0JfRVBTSUxPTiAKI2RlZmluZSBTUkdCX0VQU0lMT04gMC4wMDAwMDAwMQojZW5kaWYKCiNpZm5kZWYgRk5DX1JHQjJTUkdCCiNkZWZpbmUgRk5DX1JHQjJTUkdCCgoKZmxvYXQgcmdiMnNyZ2IoZmxvYXQgY2hhbm5lbCkgewogICAgcmV0dXJuIChjaGFubmVsIDwgMC4wMDMxMzA4KSA/IGNoYW5uZWwgKiAxMi45MiA6IDEuMDU1ICogcG93KGNoYW5uZWwsIDAuNDE2NjY2NjY2NjY2NjY2NykgLSAwLjA1NTsKfQoKdmVjMyByZ2Iyc3JnYih2ZWMzIHJnYikgewogICAgcmV0dXJuIHNhdHVyYXRlKHZlYzMocmdiMnNyZ2IocmdiLnIgLSBTUkdCX0VQU0lMT04pLCByZ2Iyc3JnYihyZ2IuZyAtIFNSR0JfRVBTSUxPTiksIHJnYjJzcmdiKHJnYi5iIC0gU1JHQl9FUFNJTE9OKSkpOwp9Cgp2ZWM0IHJnYjJzcmdiKHZlYzQgcmdiKSB7CiAgICByZXR1cm4gdmVjNChyZ2Iyc3JnYihyZ2IucmdiKSwgcmdiLmEpOwp9CgojZW5kaWYKCgoKI2lmbmRlZiBGTkNfTUlYT0tMQUIKI2RlZmluZSBGTkNfTUlYT0tMQUIKdmVjMyBtaXhPa2xhYiggdmVjMyBjb2xBLCB2ZWMzIGNvbEIsIGZsb2F0IGggKSB7CgogICAgI2lmZGVmIE1JWE9LTEFCX0NPTE9SU1BBQ0VfU1JHQgogICAgY29sQSA9IHNyZ2IycmdiKGNvbEEpOwogICAgY29sQiA9IHNyZ2IycmdiKGNvbEIpOwogICAgI2VuZGlmCgogICAgCiAgICBjb25zdCBtYXQzIGtDT05FdG9MTVMgPSBtYXQzKCAgICAgICAgICAgICAgICAKICAgICAgICAgMC40MTIxNjU2MTIwLCAgMC4yMTE4NTkxMDcwLCAgMC4wODgzMDk3OTQ3LAogICAgICAgICAwLjUzNjI3NTIwODAsICAwLjY4MDcxODk1ODQsICAwLjI4MTg0NzQxNzQsCiAgICAgICAgIDAuMDUxNDU3NTY1MywgIDAuMTA3NDA2NTc5MCwgIDAuNjMwMjYxMzYxNik7CiAgICBjb25zdCBtYXQzIGtMTVN0b0NPTkUgPSBtYXQzKAogICAgICAgICA0LjA3NjcyNDUyOTMsIC0xLjI2ODE0Mzc3MzEsIC0wLjAwNDExMTk4ODUsCiAgICAgICAgLTMuMzA3MjE2ODgyNywgIDIuNjA5MzMyMzIzMSwgLTAuNzAzNDc2MzA5OCwKICAgICAgICAgMC4yMzA3NTkwNTQ0LCAtMC4zNDExMzQ0MjkwLCAgMS43MDY4NjI1Njg5KTsKICAgICAgICAgICAgICAgICAgICAKICAgIAogICAgdmVjMyBsbXNBID0gcG93KCBrQ09ORXRvTE1TICogY29sQSwgdmVjMygxLjAvMy4wKSApOwogICAgdmVjMyBsbXNCID0gcG93KCBrQ09ORXRvTE1TICogY29sQiwgdmVjMygxLjAvMy4wKSApOwogICAgCiAgICB2ZWMzIGxtcyA9IG1peCggbG1zQSwgbG1zQiwgaCApOwogICAgCiAgICAKICAgIHZlYzMgcmdiID0ga0xNU3RvQ09ORSoobG1zKmxtcypsbXMpOwoKICAgICNpZmRlZiBNSVhPS0xBQl9DT0xPUlNQQUNFX1NSR0IKICAgIHJldHVybiByZ2Iyc3JnYihyZ2IpOwogICAgI2Vsc2UKICAgIHJldHVybiByZ2I7CiAgICAjZW5kaWYKfQoKdmVjNCBtaXhPa2xhYiggdmVjNCBjb2xBLCB2ZWM0IGNvbEIsIGZsb2F0IGggKSB7CiAgICByZXR1cm4gdmVjNCggbWl4T2tsYWIoY29sQS5yZ2IsIGNvbEIucmdiLCBoKSwgbWl4KGNvbEEuYSwgY29sQi5hLCBoKSApOwp9CiNlbmRpZgoKCgptYXQyIFJvdChmbG9hdCBhKQoKewoKICAgIGZsb2F0IHMgPSBzaW4oYSk7CgogICAgZmxvYXQgYyA9IGNvcyhhKTsKCiAgICByZXR1cm4gbWF0MihjLCAtcywgcywgYyk7Cgp9CgoKCgoKLy8gQ3JlYXRlZCBieSBpbmlnbyBxdWlsZXogLSBpcS8yMDE0CgovLyBMaWNlbnNlIENyZWF0aXZlIENvbW1vbnMgQXR0cmlidXRpb24tTm9uQ29tbWVyY2lhbC1TaGFyZUFsaWtlIDMuMCBVbnBvcnRlZCBMaWNlbnNlLgoKdmVjMiBoYXNoKCB2ZWMyIHAgKQoKewoKICAgIHAgPSB2ZWMyKCBkb3QocCx2ZWMyKDIxMjcuMSw4MS4xNykpLCBkb3QocCx2ZWMyKDEyNjkuNSwyODMuMzcpKSApOwoKCXJldHVybiBmcmFjdChzaW4ocCkqNDM3NTguNTQ1Myk7Cgp9CgoKCmZsb2F0IG5vaXNlKCBpbiB2ZWMyIHAgKQoKewoKICAgIHZlYzIgaSA9IGZsb29yKCBwICk7CgogICAgdmVjMiBmID0gZnJhY3QoIHAgKTsKCgkKCgl2ZWMyIHUgPSBmKmYqKDMuMC0yLjAqZik7CgoKCiAgICBmbG9hdCBuID0gbWl4KCBtaXgoIGRvdCggLTEuMCsyLjAqaGFzaCggaSArIHZlYzIoMC4wLDAuMCkgKSwgZiAtIHZlYzIoMC4wLDAuMCkgKSwgCgogICAgICAgICAgICAgICAgICAgICAgICBkb3QoIC0xLjArMi4wKmhhc2goIGkgKyB2ZWMyKDEuMCwwLjApICksIGYgLSB2ZWMyKDEuMCwwLjApICksIHUueCksCgogICAgICAgICAgICAgICAgICAgbWl4KCBkb3QoIC0xLjArMi4wKmhhc2goIGkgKyB2ZWMyKDAuMCwxLjApICksIGYgLSB2ZWMyKDAuMCwxLjApICksIAoKICAgICAgICAgICAgICAgICAgICAgICAgZG90KCAtMS4wKzIuMCpoYXNoKCBpICsgdmVjMigxLjAsMS4wKSApLCBmIC0gdmVjMigxLjAsMS4wKSApLCB1LngpLCB1LnkpOwoKCXJldHVybiAwLjUgKyAwLjUqbjsKCn0KCgoKdm9pZCBtYWluKCl7CgogIAoKICAgIHZlYzIgdXYgPSBnbF9GcmFnQ29vcmQueHkvdV9yZXNvbHV0aW9uLnh5OwoKICAgIGZsb2F0IHJhdGlvID0gdV9yZXNvbHV0aW9uLnggLyB1X3Jlc29sdXRpb24ueTsKCgoKICAgIHZlYzIgdHV2ID0gdXY7CgogICAgdHV2IC09IC41OwoKICAgIAoKICAgIC8vYW5pbWF0aW9uCgogICAgZmxvYXQgc3BlZWQgPSB1X3RpbWUgKiAxMC4gKiB1X2FuaW1hdGVfc3BlZWQ7CgogICAgaWYodV9hbmltYXRlID09IGZhbHNlKXsKCiAgICAgIHNwZWVkID0gMC4wOwoKICAgIH0KCgoKICAgIC8vIHJvdGF0ZSB3aXRoIE5vaXNlCgogICAgZmxvYXQgZGVncmVlID0gbm9pc2UodmVjMihzcGVlZC8xMDAuMCwgdHV2LngqdHV2LnkpKTsKCgoKICAgIHR1di55ICo9IDEuL3JhdGlvOwoKICAgIHR1diAqPSBSb3QocmFkaWFucygoZGVncmVlLS41KSo3MjAuKzE4MC4pKTsKCgl0dXYueSAqPSByYXRpbzsKCiAgICAKCiAgICAvLyBXYXZlIHdhcnAgd2l0aCBzaW4KCiAgICBmbG9hdCBmcmVxdWVuY3kgPSAyMC4gKiB1X2ZyZXF1ZW5jeTsKCiAgICBmbG9hdCBhbXBsaXR1ZGUgPSAzMC4gKiAoMTAuKigwLjAxK3VfYmx1cikpOwoKICAgIAoKICAgIHR1di54ICs9IHNpbih0dXYueSpmcmVxdWVuY3krc3BlZWQpL2FtcGxpdHVkZTsKCiAgIAl0dXYueSArPSBzaW4odHV2LngqZnJlcXVlbmN5KjEuNStzcGVlZCkvKGFtcGxpdHVkZSouNSk7CgogICAgCgogICAgCgogICAgLy8gZHJhdyB0aGUgaW1hZ2UKCiAgICB2ZWM0IGxheWVyMSA9IG1peE9rbGFiKHVfY29sb3JzWzBdLCB1X2NvbG9yc1sxXSwgUygtLjMsIC4yLCAodHV2KlJvdChyYWRpYW5zKC01LikpKS54KSk7CgogICAgdmVjNCBsYXllcjIgPSBtaXhPa2xhYih1X2NvbG9yc1syXSwgdV9jb2xvcnNbM10sIFMoLS4zLCAuMiwgKHR1dipSb3QocmFkaWFucygtNS4pKSkueCkpOwoKICAgIAoKICAgIHZlYzQgZmluYWxDb21wID0gbWl4T2tsYWIobGF5ZXIxLCBsYXllcjIsIFMoLjUsIC0uMywgdHV2LnkpKTsKCiAgICAKCiAgICAKCiAgICBnbF9GcmFnQ29sb3IgPSBmaW5hbENvbXA7CgogICAgCgp9CgpgLAogICAgICAgICAgICAgICAgdmVydGV4U2hhZGVyOiBgLy8gVmVydGV4IHNoYWRlcgoKdm9pZCBtYWluKCkgewogIGdsX1Bvc2l0aW9uID0gcHJvamVjdGlvbk1hdHJpeCAqIG1vZGVsVmlld01hdHJpeCAqIHZlYzQocG9zaXRpb24sIDEuMCk7Cn1gLAogICAgICAgICAgICAgICAgdW5pZm9ybXM6IHt1X2NvbG9yczoge3ZhbHVlOiBbbmV3IFRIUkVFLlZlY3RvcjQoMSwxLDEsMSksbmV3IFRIUkVFLlZlY3RvcjQoMSwwLDEsMSksbmV3IFRIUkVFLlZlY3RvcjQoMC4zMTM3MjU0OTAxOTYwNzg0LDAsMSwxKSxuZXcgVEhSRUUuVmVjdG9yNCgwLjc1Mjk0MTE3NjQ3MDU4ODIsMC4wMDc4NDMxMzcyNTQ5MDE5NiwxLDEpXX0sdV9ibHVyOiB7dmFsdWU6IDAuMzF9LHVfYW5pbWF0ZToge3ZhbHVlOiB0cnVlfSx1X2FuaW1hdGVfc3BlZWQ6IHt2YWx1ZTogMX0sdV9mcmVxdWVuY3k6IHt2YWx1ZTogMC41fSx1X3RpbWU6IHt2YWx1ZTogMH0sdV9tb3VzZToge3ZhbHVlOiBbMCwwXX0sdV9yZXNvbHV0aW9uOiB7dmFsdWU6IFsyNDAsNTgwXX19LAogICAgICAgICAgICAgICAgd2lyZWZyYW1lOiBmYWxzZSwgCiAgICAgICAgICAgICAgICB3aXJlZnJhbWVMaW5ld2lkdGg6IDAsCiAgICAgICAgICAgICAgICBkaXRoZXJpbmc6IGZhbHNlLAogICAgICAgICAgICAgICAgZmxhdFNoYWRpbmc6IHRydWUsCiAgICAgICAgICAgICAgICBkb3VibGVTaWRlZDogdHJ1ZSwKICAgICAgICAgICAgICAgIGdsc2xWZXJzaW9uOiAiMTAwIgogICAgICAgICAgICB9KQogICAgICAgICk7ICAKICAgIH0KCiAgICBSZWFjdERPTS5yZW5kZXIoUmVhY3QuY3JlYXRlRWxlbWVudChDYW52YXMsewogICAgICAgICAgICBnbDogewogICAgICAgICAgICAgICAgcHJlc2VydmVEcmF3aW5nQnVmZmVyOiB0cnVlLAogICAgICAgICAgICAgICAgcHJlbXVsdGlwbGllZEFscGhhOiBmYWxzZSwKICAgICAgICAgICAgICAgIGFscGhhOiB0cnVlLAogICAgICAgICAgICAgICAgdHJhbnNwYXJlbnQ6IHRydWUsCiAgICAgICAgICAgICAgICBhbnRpYWxpYXM6IHRydWUsCiAgICAgICAgICAgICAgICBwcmVjaXNpb246ICJoaWdocCIsCiAgICAgICAgICAgICAgICBwb3dlclByZWZlcmVuY2U6ICJoaWdoLXBlcmZvcm1hbmNlIgogICAgICAgICAgICB9LAogICAgICAgICAgICByZXNpemU6ewogICAgICAgICAgICAgICAgZGVib3VuY2U6IDAsCiAgICAgICAgICAgICAgICBzY3JvbGw6IGZhbHNlLAogICAgICAgICAgICAgICAgb2Zmc2V0U2l6ZTogdHJ1ZQogICAgICAgICAgICB9LAogICAgICAgICAgICBkcHI6IDEsCiAgICAgICAgICAgIGNhbWVyYTogewogICAgICAgICAgICAgICAgZm92OiA3NSwKICAgICAgICAgICAgICAgIG5lYXI6IDAuMSwKICAgICAgICAgICAgICAgIGZhcjogMTAwMCwKICAgICAgICAgICAgICAgIHBvc2l0aW9uOiBbMCwwLDVdCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgIHN0eWxlOnsgaGVpZ2h0OiAiMTAwJSIsIHdpZHRoOiAiMTAwJSIgfQogICAgICAgIH0sCiAgICAgICAgUmVhY3QuY3JlYXRlRWxlbWVudChUZXh0dXJlTWVzaCkgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICksIGVtYmVkUm9vdCk7Cjwvc2NyaXB0PgogICAgICAgIDwvaGVhZD4KICAgICAgICA8Ym9keT4KPCEtLSBBU1NFVCBOT1QgSU5MSU5FRDogYXNzZXRzL2Jvb2suNWZiMTFiOGQuc3ZnIC0tPgoKPCEtLSBBU1NFVCBOT1QgSU5MSU5FRDogYXNzZXRzL2x5Z2lhLmY3NDkwNTk0LnN2ZyAtLT4KCjwhLS0gQVNTRVQgTk9UIElOTElORUQ6IGFzc2V0cy9vdmVyZmxvdy44ZDUwNDE1ZC5zdmcgLS0+Cgo8IS0tIEFTU0VUIE5PVCBJTkxJTkVEOiBhc3NldHMvdHJhc2guNTI0ZGJjZDMuc3ZnIC0tPgoKPCEtLSBBU1NFVCBOT1QgSU5MSU5FRDogYXNzZXRzL3ZlcnRpY2FsLjkwNjEwODQ5LnN2ZyAtLT4KCjwhLS0gQVNTRVQgTk9UIElOTElORUQ6IGFzc2V0cy9ob3Jpem9udGFsLjQ0Zjc3MWY4LnN2ZyAtLT4KCjwhLS0gQVNTRVQgTk9UIElOTElORUQ6IGFzc2V0cy9hZGQuYTU1MjQwZGQuc3ZnIC0tPgoKPCEtLSBBU1NFVCBOT1QgSU5MSU5FRDogYXNzZXRzL3NpZy44NTBhODVlNy5zdmcgLS0+Cgo8IS0tIEFTU0VUIE5PVCBJTkxJTkVEOiBhc3NldHMvbWludXMuMWUxYTBhYmQuc3ZnIC0tPgoKPCEtLSBBU1NFVCBOT1QgSU5MSU5FRDogYXNzZXRzL2VmZmVjdC40NTU3MjQzZi5zdmcgLS0+Cgo8IS0tIEFTU0VUIE5PVCBJTkxJTkVEOiBhc3NldHMvdmlzaWJsZS5jNmQ0ZTFjMC5zdmcgLS0+Cgo8IS0tIEFTU0VUIE5PVCBJTkxJTkVEOiBhc3NldHMvaGlkZGVuLjVhNGZjMjU0LnN2ZyAtLT4KCjwhLS0gQVNTRVQgTk9UIElOTElORUQ6IGFzc2V0cy93b3JrZXIuYjc2MWZiMTEuanMgLS0+CjwvYm9keT4KICAgICAgICA8L2h0bWw+" 
+      class="w-[150%] h-[110%] md:w-[80%] lg:w-[60%] sm:mobile-bottom border-none"
+      frameborder="0"
+    ></iframe>
+  </div>
+
+  <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-black"></div>
+
+
+  <header class="absolute top-0 w-full py-4">
+    <div class="container mx-auto flex justify-center">
+      <img src="logo.svg" alt="Logo Growmatic" class="h-12 md:h-16">
+    </div>
+  </header>
+  <!-- Content Section -->
+  <div class="relative z-10 flex flex-col items-center justify-center min-h-screen text-center px-4 text-container">
+    <div class="container mx-auto max-w-5xl">
+      <h1 class="text-white text-4xl md:text-5xl mb-7 leading-snug">
+        Sklonuj swojego
+        <span class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#EBBAFF] to-[#7F8CFF]">
+          najlepszego handlowca
+        </span>
+      </h1>
+      <p class="text-white text-xl md:text-2xl mb-7">
+        Wprowadzamy automatyzację w sprzedaży, które nie tylko oszczędzają czas, ale przede wszystkim poprawiają konwersję o 10-30% w 3 miesiące. 
+        <span class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#DECFFF] to-[#F7A3FF]">Albo nie płacisz.</span>
+      </p>
+    </div>
+          <!-- CTA Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4">
+            <!-- CTA Button 1: Scroll to Contact -->
+            <a href="#contact" class="inline-block px-6 py-3 bg-gradient-to-r from-[#7F8CFF] to-[#EBBAFF] text-black font-semibold rounded-lg shadow-md hover:from-[#6a7ce0] hover:to-[#c0aaff] transition duration-300">
+              Bezpłatna konsultacja
+            </a>
+            
+            <!-- CTA Button 2: Download Materials -->
+            <a href="#download" download class="inline-block px-6 py-3 bg-transparent border border-[#7F8CFF] text-[#7F8CFF] font-semibold rounded-lg shadow-md hover:bg-[#7F8CFF] hover:text-black transition duration-300">
+              Pobierz materiały
+            </a>
+          </div>
+  </div>
+
+  <section class="py-16 bg-black text-white mt-40 mb-40 ml-10 mr-10">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center">
+        Dlaczego warto wybrać nas?
+      </h2>
+      <p class="text-lg text-center leading-relaxed" style="display: none">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rutrum nisl non felis congue, sed vulputate purus malesuada. Nullam vehicula erat ut lorem tempus.
+      </p>
+      <div class="grid md:grid-cols-3 gap-8 mt-12">
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto bg-gradient-to-r from-[#7F8CFF] to-[#EBBAFF] rounded-full mb-4"></div>
+          <h3 class="text-xl font-semibold">Doświadczenie i Ekspertyza</h3>
+          <p class="text-gray-400 mt-2">Nasz zespół jest unikalnym połączeniem ekspertyzy w dziedzinie zarządzania sprzedażą oraz twardych umiejętności technicznych.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto bg-gradient-to-r from-[#F7A3FF] to-[#DECFFF] rounded-full mb-4"></div>
+          <h3 class="text-xl font-semibold">Indywidualne Podejście</h3>
+          <p class="text-gray-400 mt-2">Każde wdrożenie poprzedzone jest głęboką analizą procesów sprzedaży. Dostosowujemy nasze rozwiązania do unikalnych potrzeb i charakteru Twojego biznesu.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto bg-gradient-to-r from-[#6C5CE7] to-[#FF6B81] rounded-full mb-4"></div>
+          <h3 class="text-xl font-semibold">Gwarantowane wyniki</h3>
+          <p class="text-gray-400 mt-2">Jesteśmy pewni skuteczności naszych rozwiązań. Gwarantujemy poprawę konwersji lub zwrot pieniędzy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-gradient-to-r from-[#1F0065] to-[#5000FE] text-white py-16 px-6 md:px-16">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
+      <!-- Left Content -->
+      <div class="md:w-1/2 text-left">
+        <h2 class="text-3xl md:text-4xl font-bold leading-snug">
+          Pobierz darmową checklistę
+        </h2>
+        <p class="text-sm md:text-base mt-4">
+          10 automatyzacji, które wspomagają trawienie i zapobiegają zatwardzeniu
+        </p>
+      </div>
+  
+      <!-- Right Content -->
+      <div class="md:w-1/2 w-full">
+        <form class="flex flex-col gap-4">
+          <div class="flex flex-col sm:flex-row gap-4">
+            <!-- Email Input -->
+            <input
+              type="email"
+              placeholder="Wpisz swój e-mail"
+              class="flex-1 py-3 px-4 bg-white text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+            <!-- Phone Input -->
+            <input
+              type="tel"
+              placeholder="Wpisz swój numer telefonu"
+              class="flex-1 py-3 px-4 bg-white text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            class="bg-[#1F0065] hover:bg-[#3200A8] text-white py-3 px-4 rounded-lg w-50 flex justify-center items-center text-lg font-bold"
+          >
+            Pobierz PDF-a
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+  
+
+
+  <section class="py-16 my-20 bg-black text-white">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center">Najczęstsze pytania</h2>
+      <div class="space-y-6 mt-8">
+        <div class="bg-[#11121D] p-6 rounded-lg">
+          <h3 class="text-lg font-semibold">Czym dokładnie się zajmujecie?</h3>
+          <p class="text-gray-400 mt-2">
+            Specjalizujemy się w tworzeniu i wdrażaniu systemów automatyzacji sprzedaży które mają realny wpływ na wyniki. 
+          </p>
+        </div>
+        <div class="bg-[#11121D] p-6 rounded-lg">
+          <h3 class="text-lg font-semibold">Jak długo trwa wdrożenie?</h3>
+          <p class="text-gray-400 mt-2">
+            Standardowy proces wdrożenia trwa od 2 do 4 tygodni, w zależności od skali projektu.
+          </p>
+        </div>
+        <div class="bg-[#11121D] p-6 rounded-lg">
+          <h3 class="text-lg font-semibold">Jakie branże obsługujecie?</h3>
+          <p class="text-gray-400 mt-2">
+            Naszym głównym obszarem specjalizacji jest sektor B2B, ale nasze rozwiązania sprawdzają się również w branży e-commerce
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-black my-20 text-white">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center">Jak wygląda proces współpracy?</h2>
+      <div class="grid md:grid-cols-3 gap-8 mt-12">
+        <div class="text-center">
+          <div class="w-12 h-12 mx-auto bg-gradient-to-r from-[#7F8CFF] to-[#EBBAFF] rounded-full mb-4 flex items-center justify-center">
+            <span class="text-black font-bold text-lg">1</span>
+          </div>
+          <h3 class="text-xl font-semibold">Konsultacja</h3>
+          <p class="text-gray-400 mt-2">Analizujemy Twoje potrzeby i cele biznesowe, aby zaproponować najlepsze rozwiązania.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 mx-auto bg-gradient-to-r from-[#F7A3FF] to-[#DECFFF] rounded-full mb-4 flex items-center justify-center">
+            <span class="text-black font-bold text-lg">2</span>
+          </div>
+          <h3 class="text-xl font-semibold">Wdrożenie</h3>
+          <p class="text-gray-400 mt-2">Implementujemy spersonalizowane systemy automatyzacji, które integrują się z Twoimi istniejącymi procesami.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 mx-auto bg-gradient-to-r from-[#6C5CE7] to-[#FF6B81] rounded-full mb-4 flex items-center justify-center">
+            <span class="text-black font-bold text-lg">3</span>
+          </div>
+          <h3 class="text-xl font-semibold">Optymalizacja</h3>
+          <p class="text-gray-400 mt-2">Monitorujemy wyniki i optymalizujemy działania, aby osiągnąć maksymalną efektywność.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- Contact section -->
+  <section id="contact" class="relative min-h-screen bg-black flex items-center overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-48 bg-gradient-to-b from-black to-transparent z-10"></div>
+
+    <div class="absolute inset-0 z-0 transform scale-x-[-1]"> 
+        <iframe src="data:text/html;base64,PGh0bWw+CiAgICAgICAgPGhlYWQ+CiAgICAgICAgICAgIDxtZXRhIG5hbWU9InZpZXdwb3J0IiBjb250ZW50PSJ3aWR0aD1kZXZpY2Utd2lkdGgsIGluaXRpYWwtc2NhbGU9MSI+CiAgICAgICAgICAgIDxzdHlsZT4KICAgICAgICAgICAgICAgIGh0bWwsIGJvZHl7CiAgICAgICAgICAgICAgICAgICAgbWFyZ2luOiAwOwogICAgICAgICAgICAgICAgICAgIHBhZGRpbmc6IDA7CiAgICAgICAgICAgICAgICAgICAgd2lkdGg6IDEwMCU7CiAgICAgICAgICAgICAgICAgICAgaGVpZ2h0OiAxMDAlOwogICAgICAgICAgICAgICAgICAgIGJvcmRlcjogMDsKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgPC9zdHlsZT4KICAgICAgICAgICAgPHNjcmlwdCB0eXBlPSJpbXBvcnRtYXAiPgp7CiAgICAiaW1wb3J0cyI6IHsKICAgICAgICAicmVhY3QiOiAiaHR0cHM6Ly9jZG4uc2t5cGFjay5kZXYvcmVhY3RAMTguMC4yIiwKICAgICAgICAicmVhY3QtZG9tIjogImh0dHBzOi8vY2RuLnNreXBhY2suZGV2L3JlYWN0LWRvbUAxOC4wLjIiLAogICAgICAgICJ0aHJlZSI6ICJodHRwczovL2Nkbi5za3lwYWNrLmRldi90aHJlZUAwLjE0OC4wIiwKICAgICAgICAicmVhY3QtdGhyZWUvZmliZXIiOiAiaHR0cHM6Ly9jZG4uc2t5cGFjay5kZXYvQHJlYWN0LXRocmVlL2ZpYmVyQDcuMC4yNCIKICAgIH0KfQo8L3NjcmlwdD4KPHN0eWxlPgogICAgaHRtbCwgYm9keXsKICAgICAgICBtYXJnaW46IDA7CiAgICAgICAgcGFkZGluZzogMDsKICAgICAgICB3aWR0aDogMTAwJTsKICAgICAgICBoZWlnaHQ6IDEwMCU7CiAgICAgICAgYm9yZGVyOiAwOwogICAgfQogICAgLm50LWVtYmVkewogICAgICAgIHdpZHRoOiAxMDAlOwogICAgICAgIGhlaWdodDogMTAwJTsKICAgIH0KICAgIC5udC1lbWJlZCBjYW52YXN7CiAgICAgICAgd2lkdGg6IDEwMCU7CiAgICAgICAgaGVpZ2h0OiAxMDAlOwogICAgfQo8L3N0eWxlPgo8c2NyaXB0IHR5cGU9Im1vZHVsZSI+CiAgICBpbXBvcnQgUmVhY3QsIHt1c2VSZWYsdXNlTWVtb30gZnJvbSAncmVhY3QnOwogICAgaW1wb3J0IFJlYWN0RE9NIGZyb20gJ3JlYWN0LWRvbSc7CiAgICBpbXBvcnQgKiBhcyBUSFJFRSBmcm9tICd0aHJlZSc7CiAgICBpbXBvcnQge0NhbnZhcywgdXNlRnJhbWUsIHVzZVRocmVlfSBmcm9tICdyZWFjdC10aHJlZS9maWJlcic7CgogICAgbGV0IGVtYmVkUm9vdCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpOwogICAgZW1iZWRSb290LmNsYXNzTmFtZSA9ICJudC1lbWJlZCI7CiAgICBkb2N1bWVudC5ib2R5LmFwcGVuZENoaWxkKGVtYmVkUm9vdCk7CgogICAgY29uc3QgVGV4dHVyZU1lc2ggPSAoKSA9PiB7CiAgICAgICAgY29uc3QgbWVzaCA9IHVzZVJlZihudWxsKQogICAgICAgIHVzZUZyYW1lKHN0YXRlID0+IHsKICAgICAgICAgICAgY29uc3QgeyBjbG9jaywgbW91c2UsIGdsLCBzY2VuZSwgY2FtZXJhIH0gPSBzdGF0ZQogICAgICAgICAgICBpZihtZXNoLmN1cnJlbnQpewogICAgICAgICAgICAgICAgbWVzaC5jdXJyZW50Lm1hdGVyaWFsLnVuaWZvcm1zLnVfbW91c2UudmFsdWUgPSBbbW91c2UueCAvIDIgKyAwLjUsIG1vdXNlLnkgLyAyICsgMC41XQogICAgICAgICAgICAgICAgbWVzaC5jdXJyZW50Lm1hdGVyaWFsLnVuaWZvcm1zLnVfdGltZS52YWx1ZSA9IGNsb2NrLmdldEVsYXBzZWRUaW1lKCkKICAgICAgICAgICAgICAgIGxldCBjID0gZ2wuZG9tRWxlbWVudC5nZXRCb3VuZGluZ0NsaWVudFJlY3QoKQogICAgICAgICAgICAgICAgbWVzaC5jdXJyZW50Lm1hdGVyaWFsLnVuaWZvcm1zLnVfcmVzb2x1dGlvbi52YWx1ZSA9IFtjLndpZHRoLGMuaGVpZ2h0XQogICAgICAgICAgICB9CiAgICAgICAgfSkKICAgICAgICAKICAgICAgICByZXR1cm4gUmVhY3QuY3JlYXRlRWxlbWVudCgnbWVzaCcsCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAgIHJlZjptZXNoLAogICAgICAgICAgICAgICAgcG9zaXRpb246IFswLDAsMF0sCiAgICAgICAgICAgICAgICBzY2FsZTogMSwKICAgICAgICAgICAgICAgIHJvdGF0aW9uOiBbMCwwLDBdCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgIFJlYWN0LmNyZWF0ZUVsZW1lbnQoJ3BsYW5lR2VvbWV0cnknLHthcmdzOlsyNDAsNTgwXX0pLCAKICAgICAgICAgICAgUmVhY3QuY3JlYXRlRWxlbWVudCgnc2hhZGVyTWF0ZXJpYWwnLHsKICAgICAgICAgICAgICAgIGZyYWdtZW50U2hhZGVyOiBgdW5pZm9ybSB2ZWMyIHVfcmVzb2x1dGlvbjsKCnVuaWZvcm0gZmxvYXQgdV90aW1lOwoKdW5pZm9ybSB2ZWMzIHVfY29sb3I7Cgp1bmlmb3JtIHZlYzQgdV9iYWNrZ3JvdW5kOwoKdW5pZm9ybSBmbG9hdCB1X3NwZWVkOwoKdW5pZm9ybSBmbG9hdCB1X2RldGFpbDsKCgoKLyoKCiogQGF1dGhvciBIYXpzaSAoa2luZGEpCgoqLwoKbWF0MiBtKGZsb2F0IGEpIHsKCiAgICBmbG9hdCBjPWNvcyhhKSwgcz1zaW4oYSk7CgogICAgcmV0dXJuIG1hdDIoYywtcyxzLGMpOwoKfQoKCgoKCgojaWZuZGVmIEZOQ19SR0IyTFVNQQojZGVmaW5lIEZOQ19SR0IyTFVNQQpmbG9hdCByZ2IybHVtYShpbiB2ZWMzIGNvbG9yKSB7CiAgICByZXR1cm4gZG90KGNvbG9yLCB2ZWMzKDAuMjk5LCAwLjU4NywgMC4xMTQpKTsKfQpmbG9hdCByZ2IybHVtYShpbiB2ZWM0IGNvbG9yKSB7CiAgICByZXR1cm4gcmdiMmx1bWEoY29sb3IucmdiKTsKfQojZW5kaWYKCgojaWZuZGVmIEZOQ19MVU1BCiNkZWZpbmUgRk5DX0xVTUEKZmxvYXQgbHVtYShmbG9hdCB2KSB7IHJldHVybiB2OyB9CmZsb2F0IGx1bWEoaW4gdmVjMyB2KSB7IHJldHVybiByZ2IybHVtYSh2KTsgfQpmbG9hdCBsdW1hKGluIHZlYzQgdikgeyByZXR1cm4gcmdiMmx1bWEodi5yZ2IpOyB9CiNlbmRpZgoKCgpmbG9hdCBtYXAodmVjMyBwKSB7CgogICAgZmxvYXQgdCA9IHVfdGltZSAqIHVfc3BlZWQ7CgogICAgcC54eiAqPSBtKHQgKiAwLjQpO3AueHkqPSBtKHQgKiAwLjEpOwoKICAgIHZlYzMgcSA9IHAgKiAyLjAgKyB0OwoKICAgIHJldHVybiBsZW5ndGgocCt2ZWMzKHNpbigodCp1X3NwZWVkKSAqIDAuMSkpKSAqIGxvZyhsZW5ndGgocCkgKyAwLjkpICsgY29zKHEueCArIHNpbihxLnogKyBjb3MocS55KSkpICogMC41IC0gMS4wOwoKfQoKCgp2b2lkIG1haW4oKSB7CgogICAgdmVjMiBhID0gZ2xfRnJhZ0Nvb3JkLnh5IC8gdV9yZXNvbHV0aW9uLnggLSB2ZWMyKDAuNSwgMC41KTsKCiAgICB2ZWMzIGNsID0gdmVjMygwLjApOwoKICAgIGZsb2F0IGQgPSAyLjU7CgoKCiAgICBmb3IgKGZsb2F0IGkgPSAwLjsgaSA8PSAoMS4gKyAyMC4gKiB1X2RldGFpbCk7IGkrKykgewoKICAgICAgICB2ZWMzIHAgPSB2ZWMzKDAsIDAsIDQuMCkgKyBub3JtYWxpemUodmVjMyhhLCAtMS4wKSkgKiBkOwoKICAgICAgICBmbG9hdCByeiA9IG1hcChwKTsKCiAgICAgICAgZmxvYXQgZiA9ICBjbGFtcCgocnogLSBtYXAocCArIDAuMSkpICogMC41LCAtMC4xLCAxLjApOwoKICAgICAgICB2ZWMzIGwgPSB2ZWMzKDAuMSwgMC4zLCAwLjQpICsgdmVjMyg1LjAsIDIuNSwgMy4wKSAqIGY7CgogICAgICAgIGNsID0gY2wgKiBsICsgc21vb3Roc3RlcCgyLjUsIDAuMCwgcnopICogMC42ICogbDsKCiAgICAgICAgZCArPSBtaW4ocnosIDEuMCk7CgogICAgfQoKICAgIAoKICAgIHZlYzQgY29sb3IgPSB2ZWM0KG1pbih1X2NvbG9yLCBjbCksMS4wKTsKCiAgICAvL2NvbG9yID0gbWluKHVfYmFja2dyb3VuZCwgdV9jb2xvcik7CgogICAgY29sb3IuciA9IG1heCh1X2JhY2tncm91bmQucixjb2xvci5yKTsKCiAgICBjb2xvci5nID0gbWF4KHVfYmFja2dyb3VuZC5nLGNvbG9yLmcpOwoKICAgIGNvbG9yLmIgPSBtYXgodV9iYWNrZ3JvdW5kLmIsY29sb3IuYik7CgogICAgCgoKCiAgICBnbF9GcmFnQ29sb3IgPSBjb2xvcjsKCn0KCmAsCiAgICAgICAgICAgICAgICB2ZXJ0ZXhTaGFkZXI6IGAKICAgICAgICAgICAgdm9pZCBtYWluKCkgewogICAgICAgICAgICAgICAgZ2xfUG9zaXRpb24gPSBwcm9qZWN0aW9uTWF0cml4ICogbW9kZWxWaWV3TWF0cml4ICogdmVjNChwb3NpdGlvbiwgMS4wKTsKICAgICAgICB9YCwKICAgICAgICAgICAgICAgIHVuaWZvcm1zOiB7dV9jb2xvcjoge3ZhbHVlOiBbMC4zMTM3MjU0OTAxOTYwNzg0LDAsMV19LHVfYmFja2dyb3VuZDoge3ZhbHVlOiBbMCwwLDAsMV19LHVfc3BlZWQ6IHt2YWx1ZTogMC4yNzF9LHVfZGV0YWlsOiB7dmFsdWU6IDAuMDcyfSx1X3RpbWU6IHt2YWx1ZTogMH0sdV9tb3VzZToge3ZhbHVlOiBbMCwwXX0sdV9yZXNvbHV0aW9uOiB7dmFsdWU6IFsyNDAsNTgwXX19LAogICAgICAgICAgICAgICAgd2lyZWZyYW1lOiBmYWxzZSwgCiAgICAgICAgICAgICAgICB3aXJlZnJhbWVMaW5ld2lkdGg6IDAsCiAgICAgICAgICAgICAgICBkaXRoZXJpbmc6IGZhbHNlLAogICAgICAgICAgICAgICAgZmxhdFNoYWRpbmc6IHRydWUsCiAgICAgICAgICAgICAgICBkb3VibGVTaWRlZDogdHJ1ZSwKICAgICAgICAgICAgICAgIGdsc2xWZXJzaW9uOiAiMTAwIgogICAgICAgICAgICB9KQogICAgICAgICk7ICAKICAgIH0KCiAgICBSZWFjdERPTS5yZW5kZXIoUmVhY3QuY3JlYXRlRWxlbWVudChDYW52YXMsewogICAgICAgICAgICBnbDogewogICAgICAgICAgICAgICAgcHJlc2VydmVEcmF3aW5nQnVmZmVyOiB0cnVlLAogICAgICAgICAgICAgICAgcHJlbXVsdGlwbGllZEFscGhhOiBmYWxzZSwKICAgICAgICAgICAgICAgIGFscGhhOiB0cnVlLAogICAgICAgICAgICAgICAgdHJhbnNwYXJlbnQ6IHRydWUsCiAgICAgICAgICAgICAgICBhbnRpYWxpYXM6IHRydWUsCiAgICAgICAgICAgICAgICBwcmVjaXNpb246ICJoaWdocCIsCiAgICAgICAgICAgICAgICBwb3dlclByZWZlcmVuY2U6ICJoaWdoLXBlcmZvcm1hbmNlIgogICAgICAgICAgICB9LAogICAgICAgICAgICByZXNpemU6ewogICAgICAgICAgICAgICAgZGVib3VuY2U6IDAsCiAgICAgICAgICAgICAgICBzY3JvbGw6IGZhbHNlLAogICAgICAgICAgICAgICAgb2Zmc2V0U2l6ZTogdHJ1ZQogICAgICAgICAgICB9LAogICAgICAgICAgICBkcHI6IDEsCiAgICAgICAgICAgIGNhbWVyYTogewogICAgICAgICAgICAgICAgZm92OiA3NSwKICAgICAgICAgICAgICAgIG5lYXI6IDAuMSwKICAgICAgICAgICAgICAgIGZhcjogMTAwMCwKICAgICAgICAgICAgICAgIHBvc2l0aW9uOiBbMCwwLDVdCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgIHN0eWxlOnsgaGVpZ2h0OiAiMTAwJSIsIHdpZHRoOiAiMTAwJSIgfQogICAgICAgIH0sCiAgICAgICAgUmVhY3QuY3JlYXRlRWxlbWVudChUZXh0dXJlTWVzaCkgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICksIGVtYmVkUm9vdCk7Cjwvc2NyaXB0PgogICAgICAgIDwvaGVhZD4KICAgICAgICA8Ym9keT4KPCEtLSBBU1NFVCBOT1QgSU5MSU5FRDogYXNzZXRzL2Jvb2suNWZiMTFiOGQuc3ZnIC0tPgoKPCEtLSBBU1NFVCBOT1QgSU5MSU5FRDogYXNzZXRzL2x5Z2lhLmY3NDkwNTk0LnN2ZyAtLT4KCjwhLS0gQVNTRVQgTk9UIElOTElORUQ6IGFzc2V0cy9vdmVyZmxvdy44ZDUwNDE1ZC5zdmcgLS0+Cgo8IS0tIEFTU0VUIE5PVCBJTkxJTkVEOiBhc3NldHMvdHJhc2guNTI0ZGJjZDMuc3ZnIC0tPgoKPCEtLSBBU1NFVCBOT1QgSU5MSU5FRDogYXNzZXRzL3ZlcnRpY2FsLjkwNjEwODQ5LnN2ZyAtLT4KCjwhLS0gQVNTRVQgTk9UIElOTElORUQ6IGFzc2V0cy9ob3Jpem9udGFsLjQ0Zjc3MWY4LnN2ZyAtLT4KCjwhLS0gQVNTRVQgTk9UIElOTElORUQ6IGFzc2V0cy9hZGQuYTU1MjQwZGQuc3ZnIC0tPgoKPCEtLSBBU1NFVCBOT1QgSU5MSU5FRDogYXNzZXRzL3NpZy44NTBhODVlNy5zdmcgLS0+Cgo8IS0tIEFTU0VUIE5PVCBJTkxJTkVEOiBhc3NldHMvbWludXMuMWUxYTBhYmQuc3ZnIC0tPgoKPCEtLSBBU1NFVCBOT1QgSU5MSU5FRDogYXNzZXRzL2VmZmVjdC40NTU3MjQzZi5zdmcgLS0+Cgo8IS0tIEFTU0VUIE5PVCBJTkxJTkVEOiBhc3NldHMvdmlzaWJsZS5jNmQ0ZTFjMC5zdmcgLS0+Cgo8IS0tIEFTU0VUIE5PVCBJTkxJTkVEOiBhc3NldHMvaGlkZGVuLjVhNGZjMjU0LnN2ZyAtLT4KCjwhLS0gQVNTRVQgTk9UIElOTElORUQ6IGFzc2V0cy93b3JrZXIuYjc2MWZiMTEuanMgLS0+CjwvYm9keT4KICAgICAgICA8L2h0bWw+"
+        class="w-full h-full border-none">
+      </iframe>
+    </div>
+    
+      <!-- Formularz kontaktowy -->
+    <div class="bg-[#0B0B10] shadow-lg rounded-xl p-8 max-w-lg w-full mx-4 z-20 md:ml-20">
+      <h2 class="text-3xl font-bold text-white mb-6 text-center">Umów się na bezpłatną konsultację</h2>
+      <form id="contactForm" action="#" method="POST" class="space-y-4">
+        <!-- Imię -->
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-400">Twoje Imię</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="mt-1 w-full px-4 py-2 bg-[#1A1A1F] text-white border border-gray-600 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-600 focus:outline-none"
+            placeholder="Jan Kowalski"
+            required
+          />
+        </div>
+
+        <!-- E-mail -->
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-400">Twój Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="mt-1 w-full px-4 py-2 bg-[#1A1A1F] text-white border border-gray-600 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-600 focus:outline-none"
+            placeholder="jan.kowalski@example.com"
+            required
+          />
+        </div>
+
+        <!-- Telefon -->
+        <div>
+          <label for="tel" class="block text-sm font-medium text-gray-400">Numer telefonu</label>
+          <input
+            type="tel"
+            id="tel"
+            name="tel"
+            class="mt-1 w-full px-4 py-2 bg-[#1A1A1F] text-white border border-gray-600 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-600 focus:outline-none"
+            placeholder="505 123 456"
+            required
+          />
+        </div>
+
+        <!-- Wiadomość -->
+        <div style="display: none">
+          <label for="message" class="block text-sm font-medium text-gray-400">Wiadomość</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            class="mt-1 w-full px-4 py-2 bg-[#1A1A1F] text-white border border-gray-600 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-600 focus:outline-none"
+            placeholder="W czym możemy Ci pomóc?"
+          ></textarea>
+        </div>
+
+        <!-- Zgoda na przetwarzanie danych osobowych -->
+        <div>
+          <label class="inline-flex items-center">
+            <input
+              type="checkbox"
+              id="rodo"
+              name="rodo"
+              class="form-checkbox h-5 w-5 text-purple-600"
+              required
+            />
+            <span class="ml-2 text-xs text-gray-400">
+              Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z <a href="/polityka-prywatnosci" class="underline text-purple-600">Polityką Prywatności</a>.<span class="text-red-400">*</span>
+            </span>
+          </label>
+        </div>
+
+        <!-- Zgoda na kontakt telefoniczny -->
+        <div>
+          <label class="inline-flex items-center">
+            <input
+              type="checkbox"
+              id="zgoda_telefoniczna"
+              name="zgoda_telefoniczna"
+              class="form-checkbox h-5 w-5 text-purple-600"
+              required
+            />
+            <span class="ml-2 text-xs text-gray-400">
+              Wyrażam zgodę na kontakt telefoniczny w celu przedstawienia oferty.<span class="text-red-400">*</span>
+            </span>
+          </label>
+        </div>
+
+        <!-- Przyciski -->
+        <div class="flex items-center justify-center gap-4">
+          <button
+            type="submit"
+            class="mt-2 w-full py-3 bg-gradient-to-r from-purple-500 to-purple-700 text-white font-bold rounded-lg shadow-md hover:from-purple-400 hover:to-purple-600 transition duration-300"
+          >
+            Wyślij
+          </button>
+        </div>
+      </form>
+
+<!-- Komunikat o sukcesie z animacją -->
+  <div id="successMessage" class="hidden bg-green-500 text-white p-4 rounded-lg text-center mt-4 animate-fade-in">
+    Dziękujemy! Twoja wiadomość została wysłana.
+  </div>
+
+  <style>
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .animate-fade-in {
+      animation: fade-in 0.5s ease-in-out;
+    }
+  </style>
+  </div>
+    </div>
+    <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-black"></div>
+  </section>
+
+  <footer class="bg-black text-gray-700 py-4">
+    <div class="container mx-auto text-right">
+      <p class="text-sm">
+        Jan Zabłocki, 2024<br>
+        NIP: 9930689443
+      </p>
+    </div>
+  </footer>
+  <!-- Skrypt do obsługi formularza -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contactForm');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault(); // Zapobiega domyślnej akcji formularza
+
+      // Pobranie danych z formularza
+      const formData = new FormData(form);
+      const data = {};
+      formData.forEach((value, key) => {
+        data[key] = value;
+      });
+
+      try {
+        const response = await fetch('https://n8n.growmatic.pl/webhook/bezplatna-konsultacja', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+          // Wyświetlenie komunikatu o sukcesie
+          successMessage.classList.remove('hidden');
+
+          // Opcjonalnie: resetowanie formularza
+          form.reset();
+
+          // Opcjonalnie: ukrycie komunikatu po kilku sekundach
+          setTimeout(() => {
+            successMessage.classList.add('hidden');
+          }, 5000); // 5 sekund
+        } else {
+          // Obsługa błędów serwera
+          alert('Wystąpił problem z wysłaniem formularza. Spróbuj ponownie później.');
+        }
+      } catch (error) {
+        // Obsługa błędów sieciowych
+        console.error('Error:', error);
+        alert('Wystąpił błąd. Sprawdź połączenie internetowe i spróbuj ponownie.');
+      }
+    });
+  });
+</script>
+<script>
+  setTimeout(() => {
+    const webglBg = document.querySelector('.overflow-x-hidden');
+    webglBg.classList.remove('opacity-0');
+  }, 1000); // 1.5 sekundy opóźnienia
+  setTimeout(() => {
+    const fallbackBg = document.querySelector('[aria-hidden="true"]');
+    fallbackBg.classList.remove('opacity-0');
+  }, 2000);
+</script>
+</body>
+</html>
