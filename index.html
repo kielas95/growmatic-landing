@@ -28,16 +28,32 @@
   <link rel="manifest" href="/manifest.json">
   <title>Growmatic - Zautomatyzowany Dział Sprzedaży | Zwiększ sprzedaż 3x</title>
   
-  <!-- Dodane canonical URL -->
   <link rel="canonical" href="https://growmatic.pl">
-  
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/tailwind.min.css">
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <style>
+    @font-face {
+  font-family: 'Outfit';
+  src: url('fonts/Outfit-400.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Outfit';
+    src: url('fonts/Outfit-600.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Outfit';
+    src: url('fonts/Outfit-700.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
     body {
       font-family: 'Outfit', sans-serif;
     }
@@ -52,13 +68,11 @@
   <meta name="geo.region" content="PL" />
   <meta name="geo.position" content="52.2297;21.0122" />
   <meta name="ICBM" content="52.2297, 21.0122" />
-  <link rel="stylesheet" href="/styles/tailwind.min.css">
-  <link rel="preload" href="/fonts/outfit-v6-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/fonts/outfit-v6-latin-600.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/fonts/outfit-v6-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Outfit-400.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="/fonts/Outfit-600.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="/fonts/Outfit-700.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="logo.svg" as="image">
   <link rel="preload" href="background.webp" as="image">
-  <link rel="stylesheet" href="/styles/fonts.css" media="print" onload="this.media='all'">
 </head>
 <body class="relative h-screen bg-white text-black">
   <!-- Dodane znaczniki schema.org -->

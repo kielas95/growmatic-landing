@@ -1,0 +1,23 @@
+{
+  "name": "growmatic-landing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tailwindcss -i ./styles/main.css -o ./styles/tailwind.min.css --minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/janzablocki/growmatic-landing.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/janzablocki/growmatic-landing/issues"
+  },
+  "homepage": "https://github.com/janzablocki/growmatic-landing#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
