@@ -102,181 +102,315 @@
     </div>
   </div>
 
-  <!-- Dlaczego warto wybrać nas -->
-  <section class="py-16 bg-white text-gray-900 mt-20 mb-20 ml-10 mr-10">
-    <div class="container mx-auto px-6">
-      <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center">
-        Dlaczego warto wybrać nas?
-      </h2>
-      <div class="grid md:grid-cols-3 gap-8 mt-12">
-        <div class="text-center">
-          <div class="w-16 h-16 mx-auto bg-gradient-to-r from-[#7F8CFF] to-[#EBBAFF] rounded-full mb-4"></div>
-          <h3 class="text-xl font-semibold text-gray-900">Doświadczenie i Ekspertyza</h3>
-          <p class="text-gray-600 mt-2">Nasz zespół jest unikalnym połączeniem ekspertyzy w dziedzinie zarządzania sprzedażą oraz twardych umiejętności technicznych.</p>
-        </div>
-        <div class="text-center">
-          <div class="w-16 h-16 mx-auto bg-gradient-to-r from-[#F7A3FF] to-[#DECFFF] rounded-full mb-4"></div>
-          <h3 class="text-xl font-semibold text-gray-900">Indywidualne Podejście</h3>
-          <p class="text-gray-600 mt-2">Każde wdrożenie poprzedzone jest głęboką analizą procesów sprzedaży. Dostosowujemy nasze rozwiązania do unikalnych potrzeb i charakteru Twojego biznesu.</p>
-        </div>
-        <div class="text-center">
-          <div class="w-16 h-16 mx-auto bg-gradient-to-r from-[#6C5CE7] to-[#FF6B81] rounded-full mb-4"></div>
-          <h3 class="text-xl font-semibold text-gray-900">Gwarantowane wyniki</h3>
-          <p class="text-gray-600 mt-2">Jesteśmy pewni skuteczności naszych rozwiązań. Gwarantujemy poprawę konwersji lub zwrot pieniędzy.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Sekcja checklisty -->
-  <section class="bg-gradient-to-r from-[#4836C6] via-[#7D42FF] to-[#B12EFF] text-white py-16 px-6 md:px-16">
-    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
-      <!-- Left Content -->
-      <div class="md:w-1/2 text-left">
-        <h2 class="text-3xl md:text-4xl font-bold leading-snug">
-          Pobierz darmową checklistę
-        </h2>
-        <p class="text-sm md:text-base my-5">
-          10 automatyzacji, które wspomagają trawienie i zapobiegają zatwardzeniu
-        </p>
-        <button
-        id="openChecklistModal"
-        class="w-full md:w-[300px] bg-gradient-to-r from-[#C0FFCD] to-[#00FFBF] hover:opacity-90 text-[#4836C6] py-3 px-4 rounded-lg flex justify-center items-center text-lg font-bold transition duration-200"
-      >
-        Pobierz PDF-a
-      </button>
-      </div>
-  
-      <!-- Right Content -->
-      <div class="md:w-1/2 w-full">
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Modal -->
-  <div id="checklistModal" class="fixed inset-0 bg-black/50 z-50 hidden opacity-0 transition-all duration-200">
-    <div class="min-h-screen px-4 flex items-center justify-center" id="modalBackground">
-      <!-- Modal content -->
-      <div class="bg-white rounded-xl p-8 max-w-md w-full relative opacity-0 translate-y-4 transition-all duration-200">
-        <button 
-          id="closeModalBtn"
-          class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition-colors"
-        >
-          ✕
-        </button>
-        
-        <!-- Alert -->
-        <div id="closeAlert" class="fixed top-4 left-1/2 -translate-x-1/2 hidden">
-          <div class="bg-black/75 text-white px-6 py-3 rounded-lg text-sm">
-            Kliknij ponownie, aby zamknąć formularz
-          </div>
-        </div>
-
-        <h3 class="text-2xl font-bold text-gray-900 mb-4">Pobierz checklistę</h3>
-        <p class="text-gray-600 mb-6">Wprowadź swoje dane, aby otrzymać dostęp do checklisty</p>
-        
-        <form id="checklistForm" class="space-y-4">
-          <input
-            type="email"
-            placeholder="Wpisz swój e-mail"
-            class="w-full py-3 px-4 bg-gray-50 text-black rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
-            required
-          />
-          
-          <input
-            type="tel"
-            placeholder="Wpisz swój numer telefonu"
-            class="w-full py-3 px-4 bg-gray-50 text-black rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
-            required
-          />
-
-          <label class="flex items-start gap-2">
-            <input type="checkbox" required class="mt-1" />
-            <span class="text-sm text-gray-600">
-              Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z 
-              <a href="/polityka-prywatnosci" class="text-purple-600 hover:underline">Polityką Prywatności</a>
-            </span>
-          </label>
-
+    <!-- Sekcja checklisty -->
+    <section class="bg-gradient-to-r from-[#4836C6] via-[#7D42FF] to-[#B12EFF] text-white py-16 px-6 mt-16 md:px-16">
+      <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
+        <!-- Left Content -->
+        <div class="md:w-1/2 text-left">
+          <h2 class="text-3xl md:text-4xl font-bold leading-snug">
+            Pobierz darmową checklistę
+          </h2>
+          <p class="text-sm md:text-base my-5">
+            10 automatyzacji, które wspomagają trawienie i zapobiegają zatwardzeniu
+          </p>
           <button
-            type="submit"
-            class="w-full bg-gradient-to-r from-[#4836C6] via-[#7D42FF] to-[#B12EFF] text-white py-3 px-4 rounded-lg font-bold hover:opacity-90 transition duration-200"
+          id="openChecklistModal"
+          class="w-full md:w-[300px] bg-gradient-to-r from-[#C0FFCD] to-[#00FFBF] hover:opacity-90 text-[#4836C6] py-3 px-4 rounded-lg flex justify-center items-center text-lg font-bold transition duration-200"
+        >
+          Pobierz PDF-a
+        </button>
+        </div>
+    
+        <!-- Right Content -->
+        <div class="md:w-1/2 w-full">
+  
+        </div>
+      </div>
+    </section>
+  
+    <!-- Modal -->
+    <div id="checklistModal" class="fixed inset-0 bg-black/50 z-50 hidden opacity-0 transition-all duration-200">
+      <div class="min-h-screen px-4 flex items-center justify-center" id="modalBackground">
+        <!-- Modal content -->
+        <div class="bg-white rounded-xl p-8 max-w-md w-full relative opacity-0 translate-y-4 transition-all duration-200">
+          <button 
+            id="closeModalBtn"
+            class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition-colors"
           >
-            Pobierz PDF-a
+            ✕
           </button>
-        </form>
+          
+          <!-- Alert -->
+          <div id="closeAlert" class="fixed top-4 left-1/2 -translate-x-1/2 hidden">
+            <div class="bg-black/75 text-white px-6 py-3 rounded-lg text-sm">
+              Kliknij ponownie, aby zamknąć formularz
+            </div>
+          </div>
+  
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">Pobierz checklistę</h3>
+          <p class="text-gray-600 mb-6">Wprowadź swoje dane, aby otrzymać dostęp do checklisty</p>
+          
+          <form id="checklistForm" class="space-y-4">
+            <input
+              type="email"
+              placeholder="Wpisz swój e-mail"
+              class="w-full py-3 px-4 bg-gray-50 text-black rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              required
+            />
+            
+            <input
+              type="tel"
+              placeholder="Wpisz swój numer telefonu"
+              class="w-full py-3 px-4 bg-gray-50 text-black rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              required
+            />
+  
+            <label class="flex items-start gap-2">
+              <input type="checkbox" required class="mt-1" />
+              <span class="text-sm text-gray-600">
+                Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z 
+                <a href="/polityka-prywatnosci" class="text-purple-600 hover:underline">Polityką Prywatności</a>
+              </span>
+            </label>
+  
+            <button
+              type="submit"
+              class="w-full bg-gradient-to-r from-[#4836C6] via-[#7D42FF] to-[#B12EFF] text-white py-3 px-4 rounded-lg font-bold hover:opacity-90 transition duration-200"
+            >
+              Pobierz PDF-a
+            </button>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const modal = document.getElementById('checklistModal');
-      const modalContent = modal.querySelector('.bg-white');
-      const modalBackground = document.getElementById('modalBackground');
-      const openBtn = document.getElementById('openChecklistModal');
-      const openBtnHeader = document.getElementById('openChecklistModalHeader');
-      const closeBtn = document.getElementById('closeModalBtn');
-      const closeAlert = document.getElementById('closeAlert');
-      let closeAttempts = 0;
-      let alertTimeout;
-
-      function showModal() {
-        modal.classList.remove('hidden');
-        requestAnimationFrame(() => {
-          modal.classList.remove('opacity-0');
-          modalContent.classList.remove('opacity-0', 'translate-y-4');
+  
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('checklistModal');
+        const modalContent = modal.querySelector('.bg-white');
+        const modalBackground = document.getElementById('modalBackground');
+        const openBtn = document.getElementById('openChecklistModal');
+        const openBtnHeader = document.getElementById('openChecklistModalHeader');
+        const closeBtn = document.getElementById('closeModalBtn');
+        const closeAlert = document.getElementById('closeAlert');
+        let closeAttempts = 0;
+        let alertTimeout;
+  
+        function showModal() {
+          modal.classList.remove('hidden');
+          requestAnimationFrame(() => {
+            modal.classList.remove('opacity-0');
+            modalContent.classList.remove('opacity-0', 'translate-y-4');
+          });
+        }
+  
+        function hideModal() {
+          modal.classList.add('opacity-0');
+          modalContent.classList.add('opacity-0', 'translate-y-4');
+          closeAlert.classList.add('hidden'); 
+          clearTimeout(alertTimeout); 
+          setTimeout(() => {
+            modal.classList.add('hidden');
+            closeAttempts = 0;
+          }, 200);
+        }
+  
+        function showCloseAlert() {
+          closeAlert.classList.remove('hidden');
+          clearTimeout(alertTimeout);
+          alertTimeout = setTimeout(() => {
+            closeAlert.classList.add('hidden');
+          }, 3000);
+        }
+  
+        function handleClose() {
+          if (closeAttempts === 0) {
+            closeAttempts++;
+            showCloseAlert();
+          } else {
+            hideModal();
+          }
+        }
+  
+        openBtn.addEventListener('click', showModal);
+        openBtnHeader.addEventListener('click', showModal);
+        closeBtn.addEventListener('click', hideModal);
+        
+        modalBackground.addEventListener('click', (e) => {
+          if (e.target === modalBackground) handleClose();
         });
-      }
-
-      function hideModal() {
-        modal.classList.add('opacity-0');
-        modalContent.classList.add('opacity-0', 'translate-y-4');
-        closeAlert.classList.add('hidden'); 
-        clearTimeout(alertTimeout); 
-        setTimeout(() => {
-          modal.classList.add('hidden');
-          closeAttempts = 0;
-        }, 200);
-      }
-
-      function showCloseAlert() {
-        closeAlert.classList.remove('hidden');
-        clearTimeout(alertTimeout);
-        alertTimeout = setTimeout(() => {
-          closeAlert.classList.add('hidden');
-        }, 3000);
-      }
-
-      function handleClose() {
-        if (closeAttempts === 0) {
-          closeAttempts++;
-          showCloseAlert();
-        } else {
-          hideModal();
-        }
-      }
-
-      openBtn.addEventListener('click', showModal);
-      openBtnHeader.addEventListener('click', showModal);
-      closeBtn.addEventListener('click', hideModal);
-      
-      modalBackground.addEventListener('click', (e) => {
-        if (e.target === modalBackground) handleClose();
+  
+        modalContent.addEventListener('click', (e) => {
+          e.stopPropagation();
+        });
+  
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+            handleClose();
+          }
+        });
       });
+    </script>
+    
+  <!-- Dlaczego warto wybrać nas -->
+  <section class="py-16 bg-white text-gray-900 mt-20 mb-20 ml-1 mr-1 md:ml-10 md:mr-10">
+    <div class="container mx-auto px-4 md:px-6">
+      <h2 class="text-2xl md:text-4xl font-bold mb-4 md:mb-6 text-center">
+        Na czym polega zautomatyzowany dział sprzedaży?
+      </h2>
+      <p class="text-lg md:text-xl text-center mb-8 md:mb-12">
+        Wyobraź sobie, że Twój dział sprzedaży działa jak dobrze naoliwiona maszyna.
+      </p>
 
-      modalContent.addEventListener('click', (e) => {
-        e.stopPropagation();
-      });
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+        <div class="bg-gray-50 p-4 md:p-6 rounded-lg">
+          <div class="text-2xl md:text-3xl mb-3 md:mb-4">💌</div>
+          <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">Automatyczny prospecting</h3>
+          <p class="text-sm md:text-base text-gray-600">Maile prospectingowe piszą się same i są hiper-dostosowane do odbiorcy. W rezultacie 3x więcej osób odpisuje i proszą o spotkanie lub przedstawienie oferty.</p>
+        </div>
 
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-          handleClose();
-        }
-      });
-    });
-  </script>
+        <div class="bg-gray-50 p-4 md:p-6 rounded-lg">
+          <div class="text-2xl md:text-3xl mb-3 md:mb-4">🕒</div>
+          <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">Błyskawiczna obsługa leadów</h3>
+          <p class="text-sm md:text-base text-gray-600">Leady obsługiwane są w ciągu 5 min od zgłoszenia. To różnica między "Wow, jak szybko!" a "Dzięki, ale już kupiliśmy od kogoś innego."</p>
+        </div>
+
+        <div class="bg-gray-50 p-4 md:p-6 rounded-lg">
+          <div class="text-2xl md:text-3xl mb-3 md:mb-4">🎯</div>
+          <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">Inteligentne dopasowanie</h3>
+          <p class="text-sm md:text-base text-gray-600">Każdy klient trafia do idealnego sprzedawcy. System analizuje dane, by upewnić się, że rozmowa zakończy się sukcesem.</p>
+        </div>
+
+        <div class="bg-gray-50 p-4 md:p-6 rounded-lg">
+          <div class="text-2xl md:text-3xl mb-3 md:mb-4">📝</div>
+          <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">Automatyczne notatki</h3>
+          <p class="text-sm md:text-base text-gray-600">Notatki tworzą się same - handlowiec może skupić się w pełni na rozmowie z klientem.</p>
+        </div>
+
+        <div class="bg-gray-50 p-4 md:p-6 rounded-lg">
+          <div class="text-2xl md:text-3xl mb-3 md:mb-4">🤖</div>
+          <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">Samouzupełniający się CRM</h3>
+          <p class="text-sm md:text-base text-gray-600">CRM uzupełnia się sam. Notatki, dane, historia działań z klientem - wszystko dzieje się automatycznie.</p>
+        </div>
+
+        <div class="bg-gray-50 p-4 md:p-6 rounded-lg">
+          <div class="text-2xl md:text-3xl mb-3 md:mb-4">📊</div>
+          <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">AI-powered analityka</h3>
+          <p class="text-sm md:text-base text-gray-600">Prognozy i raporty w czasie rzeczywistym. AI przewiduje wyniki sprzedażowe i podpowiada obszary do poprawy.</p>
+        </div>
+      </div>
+
+      <div class="mt-8 md:mt-16 text-center">
+        <p class="text-sm md:text-lg text-gray-700 mb-4 md:mb-8">
+          To zaledwie 6 z 20 automatyzacji, które wprowadzamy. <b>Więcej sprzedaży, mniej zamieszania.</b> Dlatego stworzyliśmy rozwiązanie, które przynosi konkretne efekty: <b>więcej klientów, wyższe konwersje i mniejsze koszty.</b> Bez lania wody. Bez zbędnych komplikacji.
+        </p>
+        <p class="text-sm md:text-lg text-gray-700 mb-8 md:mb-12">
+          Zautomatyzowany Dział Sprzedaży to rozwiązanie, które sprawia, że sprzedawcy mogą się skupić na sprzedawaniu. Skutecznym sprzedawaniu.
+        </p>
+
+        <!-- Dlaczego to działa -->
+        <section class="bg-gray-50 rounded-xl md:rounded-2xl p-4 md:p-8 mb-8 md:mb-16">
+          <h3 class="text-2xl md:text-3xl font-bold text-center mb-4 md:mb-8">Dlaczego to działa?</h3>
+          <p class="text-sm md:text-lg text-gray-700 text-center mb-4 md:mb-8">
+            Nie chcemy być kolejną nudną firmą od automatyzacji. Chcemy, żebyś <b>zwiększył sprzedaż szybko i przewidywalnie.</b> Nasze procesy są:
+          </p>
+          <div class="max-w-3xl mx-auto space-y-4 md:space-y-8 bg-white rounded-lg md:rounded-xl p-4 md:p-6 shadow-sm mb-8 md:mb-12">
+            <div class="text-center">
+              <p class="flex items-center justify-center text-base md:text-lg mb-1 md:mb-2">
+                <span class="text-green-500 font-bold mr-2">✓</span>
+                <b>Uniwersalne</b>
+              </p>
+              <p class="text-sm md:text-base text-gray-600">Działają w każdej branży.</p>
+            </div>
+
+            <div class="text-center">
+              <p class="flex items-center justify-center text-base md:text-lg mb-1 md:mb-2">
+                <span class="text-green-500 font-bold mr-2">✓</span>
+                <b>Sprawdzone</b>
+              </p>
+              <p class="text-sm md:text-base text-gray-600">Zbudowane na bazie doświadczeń firm takich jak Twoja.</p>
+            </div>
+
+            <div class="text-center">
+              <p class="flex items-center justify-center text-base md:text-lg mb-1 md:mb-2">
+                <span class="text-green-500 font-bold mr-2">✓</span>
+                <b>Niezawodne</b>
+              </p>
+              <p class="text-sm md:text-base text-gray-600">Bo kiedy raz zaczniesz automatyzować, nie wrócisz do starych metod.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Czy to dla Ciebie -->
+        <section class="bg-gradient-to-br from-purple-50 to-blue-50 rounded-xl md:rounded-2xl p-4 md:p-8 mb-8 md:mb-16">
+          <h3 class="text-2xl md:text-3xl font-bold text-center mb-4 md:mb-8">Czy to rozwiązanie jest dla Ciebie?</h3>
+          <p class="text-sm md:text-lg text-gray-700 text-center mb-4 md:mb-8">
+            Pewnie zastanawiasz się, "Czy to zadziała u mnie?". Oto kilka pytań kontrolnych:
+          </p>
+          <div class="max-w-3xl mx-auto space-y-3 md:space-y-4 p-4 md:p-6 shadow-sm mb-6 md:mb-8 text-left">
+            <p class="flex items-center text-sm md:text-lg"><span class="text-purple-500 font-bold mr-2 md:mr-3">✓</span> Czy każdy handlowiec pozyskuje klienta "po swojemu"?</p>
+            <p class="flex items-center text-sm md:text-lg"><span class="text-purple-500 font-bold mr-2 md:mr-3">✓</span> Czy Twoja sprzedaż nie jest powtarzalna - jednego miesiąca osiągasz cele, a drugiego jesteś na minusie?</p>
+            <p class="flex items-center text-sm md:text-lg"><span class="text-purple-500 font-bold mr-2 md:mr-3">✓</span> Czy masz leady, które giną gdzieś w procesie?</p>
+            <p class="flex items-center text-sm md:text-lg"><span class="text-purple-500 font-bold mr-2 md:mr-3">✓</span> Czy koszt pozyskania klienta stale rośnie?</p>
+            <p class="flex items-center text-sm md:text-lg"><span class="text-purple-500 font-bold mr-2 md:mr-3">✓</span> Czy Twój zespół sprzedaży marnuje czas na manualną robotę?</p>
+            <p class="flex items-center text-sm md:text-lg"><span class="text-purple-500 font-bold mr-2 md:mr-3">✓</span> Czy chcesz zwiększyć sprzedaż bez zatrudniania kolejnych osób?</p>
+          </div>
+          <p class="text-sm md:text-lg text-gray-700 text-center">
+            Jeśli na większość pytań odpowiedziałeś "TAK" – z dużym prawdopodobieństwem Zautomatyzowany Dział Sprzedaży zadziała u Ciebie.
+          </p>
+        </section>
+
+        <!-- Czym się wyróżniamy -->
+        <section class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl md:rounded-2xl p-4 md:p-8 mb-8 md:mb-16">
+          <h3 class="text-2xl md:text-3xl font-bold text-center mb-4 md:mb-8">Czym wyróżnia się nasza usługa?</h3>
+          <div class="max-w-3xl mx-auto space-y-6 md:space-y-8 bg-white/80 backdrop-blur rounded-lg md:rounded-xl p-4 md:p-6 shadow-sm">
+            <div class="text-center">
+              <p class="flex items-center justify-center text-base md:text-lg mb-1 md:mb-2">
+                <span class="text-emerald-500 font-bold mr-2">✓</span>
+                <b>Wartość > Cena</b>
+              </p>
+              <p class="text-sm md:text-base text-gray-600">Nasze rozwiązania zwracają się szybciej, niż zdążysz to przeliczyć.</p>
+            </div>
+
+            <div class="text-center">
+              <p class="flex items-center justify-center text-base md:text-lg mb-1 md:mb-2">
+                <span class="text-emerald-500 font-bold mr-2">✓</span>
+                <b>Prostota > Chaos</b>
+              </p>
+              <p class="text-sm md:text-base text-gray-600">Automatyzacja, która nie wymaga dyplomu z inżynierii rakietowej.</p>
+            </div>
+
+            <div class="text-center">
+              <p class="flex items-center justify-center text-base md:text-lg mb-1 md:mb-2">
+                <span class="text-emerald-500 font-bold mr-2">✓</span>
+                <b>Efekty > Obietnice</b>
+              </p>
+              <p class="text-sm md:text-base text-gray-600">Wprowadzenie procesów zajmuje kilka dni, a wyniki zobaczysz natychmiast.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="bg-gradient-to-r from-[#4836C6] via-[#7D42FF] to-[#B12EFF] text-white rounded-xl md:rounded-2xl p-4 md:p-8">
+          <h3 class="text-2xl md:text-3xl font-bold text-center mb-3 md:mb-6">Co teraz?</h3>
+          <p class="text-sm md:text-lg text-center mb-6 md:mb-8">
+            Nie chcemy, żebyś zastanawiał się miesiącami. Dajemy Ci możliwość przetestowania naszego Zautomatyzowanego Działu Sprzedaży BEZ ryzyka. Kliknij poniżej i zobacz, jak wygląda sprzedaż na autopilocie.
+          </p>
+
+          <div class="text-center">
+            <button class="px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-[#C0FFCD] to-[#00FFBF] text-purple-900 font-bold rounded-lg hover:opacity-90 transition duration-300 shadow-lg text-sm md:text-base">
+              Zacznij sprzedawać lepiej już dziś!
+            </button>
+            <p class="text-xs md:text-sm mt-6 md:mt-8 max-w-2xl mx-auto opacity-90">
+              Nie obiecujemy cudów. Obiecujemy procesy, które działają - na automacie. Nie zastąpimy Twoich handlowców. Wyposażymy ich w potężną technologię, by mogli zarabiać jeszcze więcej. Dla siebie i dla Twojej firmy.
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+
 
   <!-- Najczęstsze pytania -->
   <section class="py-16 my-20 bg-white text-gray-900">
