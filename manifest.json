@@ -3,5 +3,5 @@
     "short_name": "growmatic",
     "theme_color": "#1F0065",
     "background_color": "#000000",
-    "display": "browser",
+    "display": "browser"
   }
