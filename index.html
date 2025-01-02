@@ -48,7 +48,18 @@
     .noscrollbar::-webkit-scrollbar {
       display: none;
     }
-  </style></head>
+  </style>
+  <meta name="geo.region" content="PL" />
+  <meta name="geo.position" content="52.2297;21.0122" />
+  <meta name="ICBM" content="52.2297, 21.0122" />
+  <link rel="stylesheet" href="/styles/tailwind.min.css">
+  <link rel="preload" href="/fonts/outfit-v6-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/outfit-v6-latin-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/outfit-v6-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="logo.svg" as="image">
+  <link rel="preload" href="fallback-bg.png" as="image">
+  <link rel="stylesheet" href="/styles/fonts.css" media="print" onload="this.media='all'">
+</head>
 <body class="relative h-screen bg-white text-black">
   <!-- Dodane znaczniki schema.org -->
   <script type="application/ld+json">
@@ -102,14 +113,14 @@
       <!-- CTA Buttons -->
       <div class="flex flex-col sm:flex-row gap-4 justify-center mb-7">
         <button
-          id="openConsultationModalHeader"
+          href="/bezplatna-konsultacja"
           class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-[#C0FFCD] to-[#00FFBF] text-purple-900 font-semibold rounded-lg shadow-md hover:opacity-90 transition duration-300"
           aria-label="Umów bezpłatną konsultację"
         >
           Bezpłatna konsultacja
         </button>
         <button
-          id="openChecklistModalHeader"
+          href="/checklista"
           class="inline-block px-6 py-3 bg-transparent border-4 border-[#00FFBF] text-[#00FFBF] font-bold rounded-lg shadow-md hover:bg-[#9CFFA422] transition duration-300"
           aria-label="Pobierz materiały o automatyzacji sprzedaży"
         >
@@ -553,7 +564,7 @@
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <button
-          id="openConsultationModal"
+          href="/bezplatna-konsultacja"
           class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-[#C0FFCD] to-[#00FFBF] text-purple-900 font-semibold rounded-lg shadow-md hover:opacity-90 transition duration-300"
         >
           Zarezerwuj termin konsultacji
@@ -562,105 +573,6 @@
     </div>
   </section>
 
-  <!-- Consultation Modal -->
-  <div id="consultationModal" class="fixed inset-0 bg-black/50 z-50 hidden opacity-0 transition-all duration-200 overflow-y-auto">
-    <div class="min-h-screen px-4 py-8 flex items-center justify-center" id="consultationBackground">
-      <!-- Modal content -->
-      <div class="bg-white rounded-xl p-4 sm:p-8 w-full max-w-4xl relative opacity-0 translate-y-4 transition-all duration-200 my-auto">
-        <button 
-          id="closeConsultationBtn"
-          class="absolute top-2 right-2 sm:top-4 sm:right-4 text-gray-500 hover:text-gray-700 transition-colors p-2"
-        >
-          ✕
-        </button>
-        
-        <!-- Alert -->
-        <div id="consultationCloseAlert" class="fixed top-4 left-1/2 -translate-x-1/2 hidden z-50">
-          <div class="bg-black/75 text-white px-6 py-3 rounded-lg text-sm whitespace-nowrap">
-            Kliknij ponownie, aby zamknąć kalendarz
-          </div>
-        </div>
-
-        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-4 pr-8">Zarezerwuj termin konsultacji</h3>
-        <p class="text-gray-600 mb-4 sm:mb-6">Wybierz dogodny termin spotkania z naszym ekspertem</p>
-        
-        <!-- Calendar -->
-        <div class="w-full rounded-xl border border-gray-200 shadow-lg overflow-hidden">
-          <div class="meetings-iframe-container" data-src="https://meetings.hubspot.com/tkielek?embed=true"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const modal = document.getElementById('consultationModal');
-      const modalContent = modal.querySelector('.bg-white');
-      const modalBackground = document.getElementById('consultationBackground');
-      const openBtn = document.getElementById('openConsultationModal');
-      const openBtnHeader = document.getElementById('openConsultationModalHeader');
-      const closeBtn = document.getElementById('closeConsultationBtn');
-      const closeAlert = document.getElementById('consultationCloseAlert');
-      let closeAttempts = 0;
-      let alertTimeout;
-
-      function showModal() {
-        modal.classList.remove('hidden');
-        requestAnimationFrame(() => {
-          modal.classList.remove('opacity-0');
-          modalContent.classList.remove('opacity-0', 'translate-y-4');
-        });
-      }
-
-      function hideModal() {
-        modal.classList.add('opacity-0');
-        modalContent.classList.add('opacity-0', 'translate-y-4');
-        closeAlert.classList.add('hidden');
-        clearTimeout(alertTimeout);
-        setTimeout(() => {
-          modal.classList.add('hidden');
-          closeAttempts = 0;
-        }, 200);
-      }
-
-      function showCloseAlert() {
-        closeAlert.classList.remove('hidden');
-        clearTimeout(alertTimeout);
-        alertTimeout = setTimeout(() => {
-          closeAlert.classList.add('hidden');
-        }, 3000);
-      }
-
-      function handleClose() {
-        if (closeAttempts === 0) {
-          closeAttempts++;
-          showCloseAlert();
-        } else {
-          hideModal();
-        }
-      }
-
-      openBtn.addEventListener('click', showModal);
-      openBtnHeader.addEventListener('click', showModal);
-      closeBtn.addEventListener('click', hideModal);
-      
-      modalBackground.addEventListener('click', (e) => {
-        if (e.target === modalBackground) handleClose();
-      });
-
-      modalContent.addEventListener('click', (e) => {
-        e.stopPropagation();
-      });
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-          handleClose();
-        }
-      });
-    });
-  </script>
 
   <footer class="bg-white text-gray-700 py-4">
     <div class="container mx-auto text-right">
