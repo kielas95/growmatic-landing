@@ -11,6 +11,7 @@
       font-family: 'Outfit', sans-serif;
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body class="bg-white text-gray-900">
   <!-- Header -->
@@ -69,5 +70,27 @@
       © 2024 Growmatic. Wszelkie prawa zastrzeżone.
     </p>
   </footer>
+
+  <script>
+    window.onload = function() {
+      const konfettiConfig = {
+        particleCount: 300,
+        spread: 140,
+        origin: { y: 0 },
+        gravity: 1.7,
+        scalar: 1.4,
+        ticks: 300,
+        colors: ['#C0FFCD', '#7D42FF', '#B12EFF', '#4836C6']
+      };
+
+      // Pierwsza fala
+      confetti(konfettiConfig);
+
+      // Druga fala po 1.5 sekundy
+      setTimeout(() => {
+        confetti(konfettiConfig);
+      }, 700);
+    };
+  </script>
 </body>
 </html>
