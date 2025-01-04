@@ -142,15 +142,15 @@
     </div>
   </div>
 
-  <div class="absolute bottom-[-1px] left-0 w-full overflow-hidden" aria-hidden="true">
+  <div class="absolute bottom-[-1px] left-0 w-full overflow-hidden max-h-[300px]" aria-hidden="true">
     <svg viewBox="0 0 1440 200" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" role="presentation">
       <path d="M0 200V100C360 0 1080 0 1440 100V200H0Z" fill="white"/>
     </svg>
   </div>
 
   <!-- VSL Container -->
-  <div class="relative w-full 2xl:-mt-[300px] -mt-[80px] sm:-mt-[150px] md:-mt-[200px] px-4">
-    <div class="max-w-2xl mx-auto rounded-xl overflow-hidden">
+  <div class="relative w-full 2xl:-mt-[350px] xl:-mt-[230px] -mt-[80px] sm:-mt-[150px] md:-mt-[200px] px-4">
+    <div class="max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto rounded-xl overflow-hidden">
       <div style="padding:68.61% 0 0 0;position:relative;">
         <div id="vimeo-facade" class="absolute inset-0 bg-black flex items-center justify-center cursor-pointer">
           <img 
@@ -197,7 +197,7 @@
           container.classList.remove('hidden');
 
           const iframe = document.createElement('iframe');
-          iframe.src = "https://player.vimeo.com/video/214352663?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1";
+          iframe.src = "https://player.vimeo.com/video/214352663?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1";
           iframe.style.position = 'absolute';
           iframe.style.top = '0';
           iframe.style.left = '0';
@@ -303,48 +303,15 @@
       </div>
 
       <div class="mt-8 md:mt-16 text-center">
-        <p class="text-md md:text-lg text-gray-700 mb-4 md:mb-8">
+        <p class="text-lg md:text-xl text-gray-700 mb-4 md:mb-8">
           To zaledwie 6 z 20 automatyzacji, które wprowadzamy. <strong>Więcej sprzedaży, mniej zamieszania.</strong> Dlatego stworzyliśmy rozwiązanie, które przynosi konkretne efekty: <strong>więcej klientów, wyższe konwersje i mniejsze koszty.</strong> Bez zbędnych komplikacji.
         </p>
-        <p class="text-md md:text-lg text-gray-700 mb-8 md:mb-12">
+        <p class="text-lg md:text-xl text-gray-700 mb-8 md:mb-12">
           Zautomatyzowany Dział Sprzedaży to rozwiązanie, które sprawia, że sprzedawcy mogą się skupić na sprzedawaniu. Skutecznym sprzedawaniu.
         </p>
 
-        <!-- Dlaczego to działa -->
-        <section class="bg-gray-50 rounded-xl md:rounded-2xl p-4 md:p-8 mb-8 md:mb-16" aria-labelledby="dlaczego-to-dziala">
-          <h3 id="dlaczego-to-dziala" class="text-2xl md:text-3xl font-bold text-center mb-4 md:mb-8">Dlaczego to działa?</h3>
-          <p class="text-md md:text-lg text-gray-700 text-center mb-4 md:mb-8">
-            Nie chcemy być kolejną nudną firmą od automatyzacji. Chcemy, żebyś <strong>zwiększył sprzedaż szybko i przewidywalnie.</strong> Nasze procesy są:
-          </p>
-          <div class="max-w-3xl mx-auto space-y-4 md:space-y-8 bg-white rounded-lg md:rounded-xl p-4 md:p-6 shadow-sm mb-8 md:mb-12">
-            <div class="text-center">
-              <p class="flex items-center justify-center text-base md:text-lg mb-1 md:mb-2">
-                <span class="text-green-500 font-bold mr-2" aria-hidden="true">✓</span>
-                <strong>Uniwersalne</strong>
-              </p>
-              <p class="text-md md:text-base text-gray-600">Działają w każdej branży.</p>
-            </div>
-
-            <div class="text-center">
-              <p class="flex items-center justify-center text-base md:text-lg mb-1 md:mb-2">
-                <span class="text-green-500 font-bold mr-2" aria-hidden="true">✓</span>
-                <strong>Sprawdzone</strong>
-              </p>
-              <p class="text-md md:text-base text-gray-600">Zbudowane na bazie doświadczeń firm takich jak Twoja.</p>
-            </div>
-
-            <div class="text-center">
-              <p class="flex items-center justify-center text-base md:text-lg mb-1 md:mb-2">
-                <span class="text-green-500 font-bold mr-2" aria-hidden="true">✓</span>
-                <strong>Niezawodne</strong>
-              </p>
-              <p class="text-md md:text-base text-gray-600">Bo kiedy raz zaczniesz automatyzować, nie wrócisz do starych metod.</p>
-            </div>
-          </div>
-        </section>
-
         <!-- Czy to dla Ciebie -->
-        <section class="bg-gradient-to-br from-purple-50 to-blue-50 rounded-xl md:rounded-2xl p-4 md:p-8 mb-8 md:mb-16" aria-labelledby="czy-to-dla-ciebie">
+        <section class="bg-gradient-to-br from-purple-50 to-blue-50 rounded-xl md:rounded-2xl p-4 md:p-8 md:-mb-16" aria-labelledby="czy-to-dla-ciebie">
           <h3 id="czy-to-dla-ciebie" class="text-2xl md:text-3xl font-bold text-center mb-4 md:mb-8">Czy to rozwiązanie jest dla Ciebie?</h3>
           <p class="text-md md:text-lg text-gray-700 text-center mb-4 md:mb-8">
             Pewnie zastanawiasz się, "Czy to zadziała u mnie?". Oto kilka pytań kontrolnych:
@@ -361,52 +328,20 @@
             Jeśli na większość pytań odpowiedziałeś "TAK" – z dużym prawdopodobieństwem Zautomatyzowany Dział Sprzedaży zadziała u Ciebie.
           </p>
         </section>
-
-        <!-- Czym się wyróżniamy -->
-        <section class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl md:rounded-2xl p-4 md:p-8" aria-labelledby="czym-sie-wyrozniamy">
-          <h3 id="czym-sie-wyrozniamy" class="text-2xl md:text-3xl font-bold text-center mb-4 md:mb-8">Czym wyróżnia się nasza usługa?</h3>
-          <div class="max-w-3xl mx-auto space-y-6 md:space-y-8 bg-white/80 backdrop-blur rounded-lg md:rounded-xl p-4 md:p-6 shadow-sm">
-            <div class="text-center">
-              <p class="flex items-center justify-center text-base md:text-lg mb-1 md:mb-2">
-                <span class="text-emerald-500 font-bold mr-2" aria-hidden="true">✓</span>
-                <strong>Wartość > Cena</strong>
-              </p>
-              <p class="text-md md:text-base text-gray-600">Nasze rozwiązania zwracają się szybciej, niż zdążysz to przeliczyć.</p>
-            </div>
-
-            <div class="text-center">
-              <p class="flex items-center justify-center text-base md:text-lg mb-1 md:mb-2">
-                <span class="text-emerald-500 font-bold mr-2" aria-hidden="true">✓</span>
-                <strong>Prostota > Chaos</strong>
-              </p>
-              <p class="text-md md:text-base text-gray-600">Automatyzacja, która nie wymaga dyplomu z inżynierii rakietowej.</p>
-            </div>
-
-            <div class="text-center">
-              <p class="flex items-center justify-center text-base md:text-lg mb-1 md:mb-2">
-                <span class="text-emerald-500 font-bold mr-2" aria-hidden="true">✓</span>
-                <strong>Efekty > Obietnice</strong>
-              </p>
-              <p class="text-md md:text-base text-gray-600">Wprowadzenie procesów zajmuje kilka dni, a wyniki zobaczysz natychmiast.</p>
-            </div>
-          </div>
-        </section>
-
-        
       </div>
     </div>
   </section>
 
   <!-- Call to Action -->
-  <section class="relative w-full bg-gradient-to-r from-[#4836C6] via-[#7D42FF] to-[#B12EFF] py-[100px] xl:py-[140px] 2xl:py-[200px]" aria-labelledby="co-teraz">
+  <section class="relative w-full bg-gradient-to-r from-[#4836C6] via-[#7D42FF] to-[#B12EFF] py-[100px]" aria-labelledby="co-teraz">
     <!-- Górna fala -->
-    <div class="absolute top-[-2px] left-0 w-full overflow-hidden rotate-180" aria-hidden="true">
+    <div class="absolute top-[-2px] left-0 w-full overflow-hidden rotate-180 max-h-[300px]" aria-hidden="true">
       <svg viewBox="0 0 1440 200" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" role="presentation">
         <path d="M0 200V100C360 0 1080 0 1440 100V200H0Z" fill="white"/>
       </svg>
     </div>
 
-    <div class="container mx-auto text-white px-4 md:px-8 py-16 md:py-20">
+    <div class="container mx-auto text-white px-4 md:px-8 py-20 md:py-24 xl:py-28 2xl:py-36 3xl:py-[200px]">
       <div class="max-w-4xl mx-auto">
         <h3 id="co-teraz" class="text-2xl md:text-3xl font-bold text-center mb-3 md:mb-6">Co teraz?</h3>
         <p class="text-md md:text-lg text-center mb-6 md:mb-8">
@@ -425,7 +360,7 @@
     </div>
 
     <!-- Dolna fala -->
-    <div class="absolute bottom-[-2px] left-0 w-full overflow-hidden" aria-hidden="true">
+    <div class="absolute bottom-[-2px] left-0 w-full overflow-hidden max-h-[300px]" aria-hidden="true">
       <svg viewBox="0 0 1440 200" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" role="presentation">
         <path d="M0 200V100C360 0 1080 0 1440 100V200H0Z" fill="white"/>
       </svg>
@@ -462,7 +397,7 @@
   </section>
 
   <!-- Jak wygląda proces współpracy -->
-  <section class="py-16 bg-white my-20 text-gray-900">
+  <section class="py-16 bg-white mt-20 text-gray-900">
     <div class="container mx-auto px-6 max-w-[1100px]">
       <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center">Jak wygląda proces współpracy?</h2>
       <div class="grid md:grid-cols-3 gap-8 mt-12">
@@ -504,13 +439,13 @@
     </div>
 
     <!-- Top Wave -->
-    <div class="absolute top-[-2px] left-0 w-full rotate-180">
+    <div class="absolute top-[-2px] left-0 w-full rotate-180 max-h-[300px]">
       <svg viewBox="0 0 1440 200" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
         <path d="M0 200V100C360 0 1080 0 1440 100V200H0Z" fill="white"/>
       </svg>
     </div>
 
-    <div class="container mx-auto px-6 mt-20 md:mt-40 text-center relative z-10">
+    <div class="container mx-auto px-6 mt-20 md:mt-40 xl:mt-56 2xl:mt-72 3xl:mt-[300px] text-center relative z-10">
       <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">
         Umów się na <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#C0FFCD] to-[#00FFBF]">bezpłatną konsultację</span>
       </h2>
