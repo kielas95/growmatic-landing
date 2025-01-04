@@ -160,7 +160,7 @@
           >
           <button
             class="relative z-10 w-20 h-20 bg-white/30 rounded-full flex items-center justify-center hover:bg-white/40 transition-colors"
-            onclick="loadVimeoPlayer()"
+            id="vimeo-play-button"
             aria-label="Odtwórz film"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
@@ -174,31 +174,50 @@
       </div>
     </div>
   </div>
-
   <script>
+    let vimeoPlayerLoaded = false;
+    
+    document.getElementById('vimeo-play-button').addEventListener('click', loadVimeoPlayer);
+    
     function loadVimeoPlayer() {
       const facade = document.getElementById('vimeo-facade');
       const container = document.getElementById('vimeo-player-container');
       
-      facade.style.display = 'none';
-      container.classList.remove('hidden');
+      if (!facade || !container) {
+        console.error('Nie znaleziono wymaganych elementów');
+        return;
+      }
 
-      const iframe = document.createElement('iframe');
-      iframe.src = "https://player.vimeo.com/video/214352663?badge=0&autopause=0&player_id=0&app_id=58479";
-      iframe.style.position = 'absolute';
-      iframe.style.top = '0';
-      iframe.style.left = '0';
-      iframe.style.width = '100%';
-      iframe.style.height = '100%';
-      iframe.setAttribute('frameborder', '0');
-      iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; clipboard-write');
-      iframe.setAttribute('title', 'Prezentacja Growmatic - Zautomatyzowany Dział Sprzedaży');
-      
-      container.appendChild(iframe);
+      if (!vimeoPlayerLoaded) {
+        facade.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          facade.style.display = 'none';
+          container.classList.remove('hidden');
 
-      const script = document.createElement('script');
-      script.src = "https://player.vimeo.com/api/player.js";
-      document.body.appendChild(script);
+          const iframe = document.createElement('iframe');
+          iframe.src = "https://player.vimeo.com/video/214352663?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1";
+          iframe.style.position = 'absolute';
+          iframe.style.top = '0';
+          iframe.style.left = '0';
+          iframe.style.width = '100%';
+          iframe.style.height = '100%';
+          iframe.style.pointerEvents = 'auto';
+          iframe.setAttribute('title', 'Prezentacja Growmatic - Zautomatyzowany Dział Sprzedaży');
+          iframe.setAttribute('allowfullscreen', 'true');
+          iframe.setAttribute('frameborder', '0');
+          
+          container.appendChild(iframe);
+          container.style.pointerEvents = 'auto'; 
+
+          const script = document.createElement('script');
+          script.src = "https://player.vimeo.com/api/player.js";
+          document.body.appendChild(script);
+          
+          vimeoPlayerLoaded = true;
+        });
+      }
     }
   </script>
 
