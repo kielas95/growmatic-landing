@@ -86,12 +86,12 @@
     <!-- Fallback Background -->
 
 
-    <div class="container mx-auto px-4 py-12 max-w-3xl lg:max-w-5xl">
+    <div class="container mx-auto px-4 max-w-3xl lg:max-w-5xl">
       <article>
         <!-- Top Section - Split -->
         <div class="flex flex-col items-center lg:flex-row gap-6 mb-12">
           <!-- Left Column -->
-          <div class="w-full lg:w-3/5">
+          <div class="w-full lg:w-1/2">
             <h1 class="text-3xl md:text-4xl font-bold mb-6 text-white">
               Porozmawiajmy o automatyzacji Twojego działu sprzedaży 
             </h1>
@@ -102,7 +102,7 @@
           </div>
 
           <!-- Right Column - Form -->
-          <div class="w-full lg:w-2/5 flex items-center justify-center">
+          <div class="w-full lg:w-1/2 flex items-center justify-center">
             <section aria-labelledby="form-heading" class="bg-white p-6 rounded-lg shadow-lg w-full" id="consultationForm">
               <h2 id="form-heading" class="text-2xl font-bold text-gray-900 mb-4">Umów bezpłatną konsultację</h2>
               <p class="text-gray-600 mb-6">Wypełnij formularz, aby zarezerwować termin konsultacji</p>
@@ -115,25 +115,41 @@
                   required
                 />
                 
-                <input
-                  type="email"
-                  placeholder="Firmowy adres e-mail"
-                  class="w-full py-3 px-4 bg-gray-50 text-black rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  required
-                />
-                
-                <input
-                  type="tel"
-                  placeholder="Numer telefonu"
-                  class="w-full py-3 px-4 bg-gray-50 text-black rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  required
-                />
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  <input
+                    type="email"
+                    placeholder="Firmowy adres e-mail"
+                    class="w-full py-3 px-4 bg-gray-50 text-black rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    required
+                  />
+                  
+                  <input
+                    type="tel"
+                    placeholder="Numer telefonu"
+                    class="w-full py-3 px-4 bg-gray-50 text-black rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    required
+                  />
+                </div>
 
                 <label class="flex items-start gap-2">
                   <input type="checkbox" required class="mt-1" />
-                  <span class="text-sm text-gray-600">
+                  <span class="text-xs text-gray-600">
                     Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z 
                     <a href="/polityka-prywatnosci" class="text-purple-600 hover:underline">Polityką Prywatności</a>
+                  </span>
+                </label>
+
+                <label class="flex items-start gap-2">
+                  <input type="checkbox" class="mt-1" />
+                  <span class="text-xs text-gray-600">
+                    Wyrażam zgodę na otrzymywanie od Growmatic informacji handlowych i marketingowych za pomocą środków komunikacji elektronicznej na podany adres e-mail (zgodnie z art. 10 ustawy o świadczeniu usług drogą elektroniczną).
+                  </span>
+                </label>
+
+                <label class="flex items-start gap-2">
+                  <input type="checkbox" class="mt-1" />
+                  <span class="text-xs text-gray-600">
+                    Wyrażam zgodę na kontakt telefoniczny ze strony Growmatic w celach marketingowych i handlowych na wskazany przeze mnie numer telefonu (zgodnie z art. 172 Prawa telekomunikacyjnego).
                   </span>
                 </label>
 

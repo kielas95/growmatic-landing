@@ -95,13 +95,31 @@
               />
             </div>
 
-            <div>
-              <label class="inline-flex items-center">
-                <input type="checkbox" required class="form-checkbox h-5 w-5 text-purple-600"/>
+            <div class="space-y-3">
+              <label class="inline-flex items-start">
+                <input type="checkbox" required class="form-checkbox h-5 w-5 text-purple-600 mt-1"/>
                 <span class="ml-2 text-xs text-gray-500">
                   Wyrażam zgodę na przetwarzanie danych zgodnie z <a href="/polityka-prywatnosci" class="text-purple-600 hover:underline">Polityką Prywatności</a>
                 </span>
               </label>
+
+              <label class="inline-flex items-start">
+                <input type="checkbox" required class="form-checkbox h-5 w-5 text-purple-600 mt-1"/>
+                <span class="ml-2 text-xs text-gray-500">
+                  Wyrażam zgodę na otrzymywanie od Growmatic informacji handlowych i marketingowych za pomocą środków komunikacji elektronicznej na podany adres e-mail, zgodnie z art. 10 ustawy o świadczeniu usług drogą elektroniczną.
+                </span>
+              </label>
+
+              <label class="inline-flex items-start">
+                <input type="checkbox" required class="form-checkbox h-5 w-5 text-purple-600 mt-1"/>
+                <span class="ml-2 text-xs text-gray-500">
+                  Wyrażam zgodę na kontakt telefoniczny ze strony Growmatic w celach marketingowych i handlowych na wskazany przeze mnie numer telefonu, zgodnie z art. 172 Prawa telekomunikacyjnego.
+                </span>
+              </label>
+
+              <p class="text-xs text-gray-400 italic">
+                *Wyrażenie zgód jest niezbędne do pobrania materiału. Każdą zgodę można wycofać w dowolnym momencie, co nie wpływa na zgodność z prawem przetwarzania dokonanego przed jej wycofaniem.
+              </p>
             </div>
 
             <button
@@ -120,9 +138,9 @@
       <!-- Image Content -->
       <div class="w-full xl:w-1/2 flex justify-center items-center">
         <img 
-          src="checklist-preview.png" 
+          src="../mockup.webp" 
           alt="Checklista podgląd" 
-          class="w-auto max-h-[70vh] rounded-lg shadow-lg"
+          class="w-auto max-h-[70vh]"
         >
       </div>
     </div>
