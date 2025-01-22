@@ -66,15 +66,17 @@
 
         <!-- Video VSL -->
         <div class="mt-6 rounded-lg overflow-hidden shadow-lg">
-          <div style="padding:56.25% 0 0 0;position:relative;">
-            <iframe 
-              src="https://player.vimeo.com/video/735637244?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" 
-              frameborder="0" 
-              allow="autoplay; fullscreen; picture-in-picture; clipboard-write" 
-              style="position:absolute;top:0;left:0;width:100%;height:100%;" 
-              title="Prezentacja Growmatic">
-            </iframe>
-          </div>
+          <script src="https://fast.wistia.com/player.js" async></script>
+          <script src="https://fast.wistia.com/embed/kic37y57ln.js" async type="module"></script>
+          <style>
+            wistia-player[media-id='kic37y57ln']:not(:defined) { 
+              background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/kic37y57ln/swatch'); 
+              display: block; 
+              filter: blur(5px); 
+              padding-top:56.25%; 
+            }
+          </style> 
+          <wistia-player media-id="kic37y57ln"></wistia-player>
         </div>
       </div>
 
