@@ -191,10 +191,7 @@
           if (response.ok) {
             successMessage.classList.remove('hidden');
             form.reset();
-            window.location.href = 'checklista.pdf';
-            setTimeout(() => {
-              successMessage.classList.add('hidden');
-            }, 5000);
+            window.location.href = '../thankyou/index.html';
           } else {
             throw new Error('Webhook nie odpowiedział prawidłowo');
           }
