@@ -81,58 +81,41 @@
         <!-- Formularz -->
         <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
           <form id="contactForm" action="#" method="POST" class="space-y-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <input
-                type="text"
-                id="name"
-                name="name"
-                class="w-full px-4 py-2 bg-white text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                placeholder="Twoje imię"
-                required
-              />
-              <input
-                type="email"
-                id="email"
-                name="email"
-                class="w-full px-4 py-2 bg-white text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                placeholder="Twój email"
-                required
-              />
-              <input
-                type="tel"
-                id="tel"
-                name="tel"
-                class="w-full px-4 py-2 bg-white text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                placeholder="Numer telefonu"
-                required
-              />
-            </div>
+            <div class="space-y-4">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="w-full px-4 py-2 bg-white text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  placeholder="Imię i nazwisko"
+                  required
+                />
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="w-full px-4 py-2 bg-white text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  placeholder="Twój email"
+                  required
+                />
+                <input
+                  type="tel"
+                  id="tel"
+                  name="tel"
+                  class="w-full px-4 py-2 bg-white text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  placeholder="Numer telefonu"
+                  required
+                />
+              </div>
 
-            <div class="space-y-3">
-              <label class="inline-flex items-start">
-                <input type="checkbox" required class="form-checkbox h-5 w-5 text-purple-600 mt-1"/>
-                <span class="ml-2 text-xs text-gray-500">
-                  Wyrażam zgodę na przetwarzanie danych zgodnie z <a href="/polityka-prywatnosci" class="text-purple-600 hover:underline">Polityką Prywatności</a>
-                </span>
-              </label>
-
-              <label class="inline-flex items-start">
-                <input type="checkbox" required class="form-checkbox h-5 w-5 text-purple-600 mt-1"/>
-                <span class="ml-2 text-xs text-gray-500">
-                  Wyrażam zgodę na otrzymywanie od Growmatic informacji handlowych i marketingowych za pomocą środków komunikacji elektronicznej na podany adres e-mail, zgodnie z art. 10 ustawy o świadczeniu usług drogą elektroniczną.
-                </span>
-              </label>
-
-              <label class="inline-flex items-start">
-                <input type="checkbox" required class="form-checkbox h-5 w-5 text-purple-600 mt-1"/>
-                <span class="ml-2 text-xs text-gray-500">
-                  Wyrażam zgodę na kontakt telefoniczny ze strony Growmatic w celach marketingowych i handlowych na wskazany przeze mnie numer telefonu, zgodnie z art. 172 Prawa telekomunikacyjnego.
-                </span>
-              </label>
-
-              <p class="text-xs text-gray-400 italic">
-                *Wyrażenie zgód jest niezbędne do pobrania materiału. Każdą zgodę można wycofać w dowolnym momencie, co nie wpływa na zgodność z prawem przetwarzania dokonanego przed jej wycofaniem.
-              </p>
+              <div class="space-y-3">
+                <label class="inline-flex items-start">
+                  <input type="checkbox" required class="form-checkbox h-5 w-5 text-purple-600 mt-1" name="consent"/>
+                  <span class="ml-2 text-xs text-gray-500">
+                    Wyrażam zgodę na przetwarzanie moich danych osobowych przez Growmatic zgodnie z <a href="/polityka-prywatnosci" class="text-purple-600 hover:underline">Polityką Prywatności</a> oraz na otrzymywanie informacji handlowych i marketingowych drogą elektroniczną i kontakt telefoniczny w celach marketingowych.
+                  </span>
+                </label>
             </div>
 
             <button
@@ -177,18 +160,32 @@
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const formData = new FormData(form);
-        const data = {};
-        formData.forEach((value, key) => {
-          data[key] = value;
-        });
+        const data = Object.fromEntries(formData);
+        
+        // Rozdzielamy imię i nazwisko
+        const fullName = data.name.trim();
+        const nameParts = fullName.split(' ');
+        const firstName = nameParts[0];
+        const lastName = nameParts.slice(1).join(' ');
+        
+        // Tworzymy nowy obiekt z danymi
+        const processedData = {
+          firstName,
+          lastName,
+          email: data.email,
+          phone: data.tel,
+          consent: data.consent === 'on'
+        };
 
         try {
-          const response = await fetch('https://n8n.growmatic.pl/webhook/bezplatna-konsultacja', {
+          const response = await fetch('https://hook.eu2.make.com/457p5t6at9dyqrkcvolo87oq53v1dgdv', {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
             },
-            body: JSON.stringify(data)
+            mode: 'cors',
+            body: JSON.stringify(processedData)
           });
 
           if (response.ok) {
@@ -199,11 +196,11 @@
               successMessage.classList.add('hidden');
             }, 5000);
           } else {
-            alert('Wystąpił problem z wysłaniem formularza. Spróbuj ponownie później.');
+            throw new Error('Webhook nie odpowiedział prawidłowo');
           }
         } catch (error) {
-          console.error('Error:', error);
-          alert('Wystąpił błąd. Sprawdź połączenie internetowe i spróbuj ponownie.');
+          console.error('Błąd:', error);
+          alert('Wystąpił błąd podczas wysyłania formularza. Spróbuj ponownie później.');
         }
       });
     });

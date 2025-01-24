@@ -24,7 +24,7 @@
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
   <style>
     body { font-family: 'Outfit', sans-serif; }
   </style>
@@ -110,6 +110,7 @@
               <form id="mainConsultationForm" class="space-y-4">
                 <input
                   type="text"
+                  name="name"
                   placeholder="Imię i nazwisko"
                   class="w-full py-3 px-4 bg-gray-50 text-black rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
                   required
@@ -117,6 +118,7 @@
                 
                 <input
                   type="email"
+                  name="email"
                   placeholder="Firmowy adres e-mail"
                   class="w-full py-3 px-4 bg-gray-50 text-black rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
                   required
@@ -124,13 +126,14 @@
                 
                 <input
                   type="tel"
+                  name="phone"
                   placeholder="Numer telefonu"
                   class="w-full py-3 px-4 bg-gray-50 text-black rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
                   required
                 />
 
                 <label class="flex items-start gap-2">
-                  <input type="checkbox" required class="mt-1" />
+                  <input type="checkbox" required class="mt-1" name="consent" />
                   <span class="text-xs text-gray-600">
                     Wyrażam zgodę na przetwarzanie moich danych osobowych przez Growmatic zgodnie z <a href="/polityka-prywatnosci" class="text-purple-600 hover:underline">Polityką Prywatności</a> oraz na otrzymywanie informacji handlowych i marketingowych drogą elektroniczną i kontakt telefoniczny w celach marketingowych.
                   </span>
@@ -296,5 +299,53 @@
     animation: highlightPulse 2s ease-out;
   }
   </style>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('mainConsultationForm');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+      
+      // Rozdzielamy imię i nazwisko
+      const fullName = data.name.trim();
+      const nameParts = fullName.split(' ');
+      const firstName = nameParts[0];
+      const lastName = nameParts.slice(1).join(' ');
+      
+      // Tworzymy nowy obiekt z danymi
+      const processedData = {
+        ...data,
+        firstName,
+        lastName,
+      };
+
+      try {
+        const response = await fetch('https://hook.eu2.make.com/6dnrknn6k2wehgvomuj7boin0nzuj0k8', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          mode: 'cors',
+          body: JSON.stringify(processedData)
+        });
+
+        if (response.ok) {
+          window.location.href = './thankyou/index.html';
+        } else {
+          throw new Error('Błąd podczas wysyłania formularza');
+        }
+        
+      } catch (error) {
+        console.error('Błąd:', error);
+        alert('Wystąpił błąd podczas wysyłania formularza. Spróbuj ponownie później.');
+      }
+    });
+  });
+  </script>
 </body>
 </html>
