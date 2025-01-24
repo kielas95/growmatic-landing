@@ -87,6 +87,7 @@
                   type="text"
                   id="name"
                   name="name"
+                  autocomplete="name"
                   class="w-full px-4 py-2 bg-white text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   placeholder="Imię i nazwisko"
                   required
@@ -95,14 +96,16 @@
                   type="email"
                   id="email"
                   name="email"
+                  autocomplete="email"
                   class="w-full px-4 py-2 bg-white text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   placeholder="Twój email"
                   required
                 />
                 <input
                   type="tel"
-                  id="tel"
-                  name="tel"
+                  id="phone"
+                  name="phone"
+                  autocomplete="tel"
                   class="w-full px-4 py-2 bg-white text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   placeholder="Numer telefonu"
                   required
@@ -168,12 +171,16 @@
         const firstName = nameParts[0];
         const lastName = nameParts.slice(1).join(' ');
         
-        // Tworzymy nowy obiekt z danymi
+        let phone = data.phone.replace(/\s+/g, '');
+        if (!phone.startsWith('+')) {
+          phone = phone.startsWith('48') ? '+' + phone : '+48' + phone;
+        }
+        
         const processedData = {
           firstName,
           lastName,
           email: data.email,
-          phone: data.tel,
+          phone: phone,
           consent: data.consent === 'on'
         };
 
