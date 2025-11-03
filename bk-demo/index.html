@@ -53,11 +53,28 @@
 
 
   </script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-TZKXH6ZN');</script>
+  <!-- End Google Tag Manager -->
+
 <script src="https://cdn.brevo.com/js/sdk-loader.js" async></script>
 <script>
+    // Version: 2.0
     window.Brevo = window.Brevo || [];
-    Brevo.push([ "init", { client_key: "uw4cu1jkvnyuteab3e6w3a9f" } ]);
+    Brevo.push([
+        "init",
+        {
+        client_key: "uw4cu1jkvnyuteab3e6w3a9f",
+        // Optional: Add other initialization options, see documentation
+        }
+    ]);
 </script>
+
+  
 </head>
 <body class="bg-white text-gray-900">
   <!-- Google Tag Manager (noscript) -->
@@ -90,29 +107,78 @@
 
   <!-- Main Content -->
   <main class="relative">
+    <!-- Fallback Background -->
+
+
     <div class="container mx-auto px-4 max-w-3xl lg:max-w-5xl lg:mt-10">
       <article>
-        <!-- Top Section - Stacked Vertical -->
-        <div class="flex flex-col gap-8 mb-12 items-center">
-          
-          <!-- Headline & Description - Same width as calendar -->
-          <div class="w-full max-w-2xl text-center">
-            <h1 class="text-3xl md:text-4xl font-bold mb-6 text-white text-center">
+        <!-- Top Section - Split -->
+        <div class="flex flex-col items-center lg:flex-row gap-6 mb-12">
+          <!-- Left Column -->
+          <div class="w-full lg:w-1/2">
+            <h1 class="text-3xl md:text-4xl font-bold mb-6 text-white">
               Porozmawiajmy o automatyzacji Twojego działu sprzedaży 🚀
             </h1>
-            <h2 class="text-lg text-gray-100 mb-8 text-center">
+              
+            <h2 class="text-lg text-gray-100 mb-8">
               Skorzystaj z 30 min bezpłatnej konsultacji, na której omówimy wyzwania i cele w Twoim dziale sprzedaży i doradzimy jak można je wesprzeć technologią.
             </h2>
           </div>
 
-          <!-- Pipedrive Calendar -->
-          <div class="w-full flex justify-center">
-            <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl">
-              <h2 class="text-2xl font-bold text-gray-900 mb-4">Umów bezpłatną konsultację</h2>
-              <iframe src="https://rf-growmatic.pipedrive.com/scheduler/y6K76Dhv/30-min-konsultacja-z-growmatic" title="Pipedrive Scheduler Embed" frameborder="0" height="600px" width="100%" style="max-width: 800px" allowfullscreen></iframe>
-            </div>
+          <!-- Right Column - Form -->
+          <div class="w-full lg:w-1/2 flex items-center justify-center">
+            <section aria-labelledby="form-heading" class="bg-white p-6 rounded-lg shadow-lg w-full" id="consultationForm">
+              <h2 id="form-heading" class="text-2xl font-bold text-gray-900 mb-4">Umów bezpłatną konsultację</h2>
+              <p class="text-gray-600 mb-6">Wypełnij formularz, aby zarezerwować termin konsultacji</p>
+              
+              <form id="mainConsultationForm" class="space-y-4">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Imię i nazwisko"
+                  autocomplete="name"
+                  class="w-full py-3 px-4 bg-gray-50 text-black rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  required
+                />
+                
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Firmowy adres e-mail"
+                  autocomplete="email"
+                  class="w-full py-3 px-4 bg-gray-50 text-black rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  required
+                />
+                
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Numer telefonu"
+                  autocomplete="tel"
+                  pattern="[+\d\s]*"
+                  title="Telefon może zawierać tylko cyfry, spacje i znak +"
+                  class="w-full py-3 px-4 bg-gray-50 text-black rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  required
+                />
+
+
+                <label class="flex items-start gap-2">
+                  <input type="checkbox" required class="mt-1" name="consent" />
+                  <span class="text-xs text-gray-600">
+                    Wyrażam zgodę na przetwarzanie moich danych osobowych przez Growmatic zgodnie z <a href="/polityka-prywatnosci" class="text-purple-600 hover:underline">Polityką Prywatności</a> oraz na otrzymywanie informacji handlowych i marketingowych drogą elektroniczną i kontakt telefoniczny w celach marketingowych.
+                  </span>
+                </label>
+                <button
+                  type="submit"
+                  class="w-full bg-gradient-to-r from-[#4836C6] via-[#7D42FF] to-[#B12EFF] text-white py-3 px-4 rounded-lg font-bold hover:opacity-90 transition duration-200"
+                >
+                  Zarezerwuj termin
+                </button>
+              </form>
+            </section>
           </div>
         </div>
+
 
       <!-- Full Width Content -->
       <div class="flex flex-col md:flex-col lg:flex-row items-center gap-8 mb-8">
@@ -203,13 +269,136 @@
             <div class="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
           </div>
 
-        <p class="text-gray-600 mt-12 text-center">
-          Konsultacja nie zobowiązuje do współpracy z nami. Wspólnie określimy, czy jest nam po drodze. <br>Jeśli tak - zbudujemy koncepcję wdrożenia. Jeśli nie - zostawimy Cię z praktycznymi wskazówkami.
+        <p class="text-gray-600 mt-12">
+          Konsultacja nie zobowiązuje do współpracy z nami. Wspólnie określimy, czy jest nam po drodze. Jeśli tak - zbudujemy koncepcję wdrożenia Zautomatyzowanego Działu Sprzedaży w Twojej firmie. Jeśli nie - zostawimy Cię z praktycznymi wskazówkami, jak możesz do tematu podejść samodzielnie. Brzmi fair? To zaczynajmy!
         </p>
 
-      </article>
-    </div>
+        <button
+          onclick="scrollToForm()"
+          class="mt-8 mb-8 px-8 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition duration-200"
+        >
+          Umów bezpłatną konsultację
+        </button>
+      </section>
+    </article>
   </main>
+
+  <script>
+  function scrollToForm() {
+    const form = document.getElementById('consultationForm');
+    const formPosition = form.getBoundingClientRect().top + window.pageYOffset;
+    const offset = 40; // 40px marginesu nad formularzem
+    
+    window.scrollTo({
+      top: formPosition - offset,
+      behavior: 'smooth'
+    });
+    
+    form.classList.add('highlight-form');
+    setTimeout(() => {
+      form.classList.remove('highlight-form');
+    }, 2000);
+  }
+  </script>
+
+  <style>
+  @keyframes highlightPulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(0, 255, 177, 0.7), 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+      transform: scale(1);
+    }
+    25% {
+      box-shadow: 0 0 30px 10px rgba(0, 255, 177, 0.5), 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+      transform: scale(1.02);
+    }
+    50% {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+      transform: scale(1);
+    }
+    75% {
+      box-shadow: 0 0 30px 10px rgba(0, 255, 177, 0.5), 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+      transform: scale(1.02);
+    }
+    100% {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+      transform: scale(1);
+    }
+  }
+
+  .highlight-form {
+    animation: highlightPulse 2s ease-out;
+  }
+  </style>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('mainConsultationForm');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+      
+      // Walidacja email - musi zawierać DOKŁADNIE jeden @
+      const emailAtCount = (data.email.match(/@/g) || []).length;
+      if (emailAtCount !== 1) {
+        alert('Email musi zawierać dokładnie jeden znak @');
+        return;
+      }
+      
+      // Walidacja telefonu - tylko cyfry i opcjonalnie +
+      const phoneRegex = /^[+\d\s]*$/;
+      if (!phoneRegex.test(data.phone)) {
+        alert('Telefon może zawierać tylko cyfry, spacje i znak +');
+        return;
+      }
+      
+      // Walidacja checkbox - musi być zaznaczony
+      if (data.consent !== 'on') {
+        alert('Musisz zaznaczyć zgodę aby zarezerwować termin');
+        return;
+      }
+      
+      // Rozdzielamy imię i nazwisko
+      const fullName = data.name.trim();
+      const nameParts = fullName.split(' ');
+      const firstName = nameParts[0];
+      const lastName = nameParts.slice(1).join(' ');
+      
+      let phone = data.phone.replace(/\s+/g, '');
+      
+      const processedData = {
+        ...data,
+        firstName,
+        lastName,
+        phone,
+      };
+
+      try {
+        const response = await fetch('https://hook.eu2.make.com/6dnrknn6k2wehgvomuj7boin0nzuj0k8', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          mode: 'cors',
+          body: JSON.stringify(processedData)
+        });
+
+        if (response.ok) {
+          window.location.href = './thankyou/index.html';
+        } else {
+          throw new Error('Błąd podczas wysyłania formularza');
+        }
+        
+      } catch (error) {
+        console.error('Błąd:', error);
+        alert('Wystąpił błąd podczas wysyłania formularza. Spróbuj ponownie później.');
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
