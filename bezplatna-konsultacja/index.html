@@ -60,6 +60,34 @@
 </script>
 </head>
 <body class="bg-white text-gray-900">
+   <script>
+    // ============================================
+    // LOAD-TIME SCROLL FIX (tylko raz, przy ładowaniu)
+    // ============================================
+    
+    // Wyłącz automatic scroll restoration
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    
+    // Resetuj scroll NATYCHMIAST (zanim iframe się załaduje)
+    window.scrollTo(0, 0);
+    
+    // ============================================
+    // LATE SCROLL FIX (po załadowaniu iframe'a)
+    // ============================================
+    
+    // Przywróć scroll do góry DOPIERO PO załadowaniu całej strony
+    // To pozwala iframe'owi na załadowanie się bez walki
+    window.addEventListener('load', function() {
+      // Daj iframe'owi chwilę na załadowanie
+      setTimeout(function() {
+        window.scrollTo(0, 0);
+      }, 500);
+    }, { once: true }); // WAŻNE: once: true = uruchom tylko raz!
+  </script>
+
+  <!-- Reszta HTML strony... -->
   <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TZKXH6ZN"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -109,7 +137,17 @@
           <div class="w-full flex justify-center">
             <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl">
               <h2 class="text-2xl font-bold text-gray-900 mb-4">Umów bezpłatną konsultację</h2>
-              <iframe src="https://rf-growmatic.pipedrive.com/scheduler/y6K76Dhv/30-min-konsultacja-z-growmatic" title="Pipedrive Scheduler Embed" frameborder="0" height="600px" width="100%" style="max-width: 800px" allowfullscreen></iframe>
+              <iframe 
+  src="https://rf-growmatic.pipedrive.com/scheduler/y6K76Dhv/30-min-konsultacja-z-growmatic" 
+  title="Pipedrive Scheduler Embed" 
+  frameborder="0" 
+  height="600px" 
+  width="100%" 
+  style="max-width: 800px" 
+  allowfullscreen
+  tabindex="-1"
+></iframe>
+
             </div>
           </div>
         </div>
