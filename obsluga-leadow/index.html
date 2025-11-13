@@ -129,8 +129,8 @@
                   autocomplete="tel"
                   class="w-full px-4 py-2 bg-white text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   placeholder="Numer telefonu"
-                  pattern="[+\d\s]*"
-                  title="Telefon może zawierać tylko cyfry, spacje i znak +"
+                  inputmode="numeric"
+                  maxlength="9"
                   required
                 />
 
@@ -180,11 +180,62 @@
   </footer>
 
   <!-- Skrypt do obsługi formularza -->
-    <script>
+  <script>
     document.addEventListener('DOMContentLoaded', () => {
       const form = document.getElementById('contactForm');
       const successMessage = document.getElementById('successMessage');
       const submitButton = form.querySelector('button[type="submit"]');
+      const phoneInput = document.getElementById('phone');
+      
+      // Blacklista randomowych numerów telefonów
+      const invalidPhoneNumbers = new Set([
+        '000000000', '111111111', '222222222', '333333333', '444444444',
+        '555555555', '666666666', '777777777', '888888888', '999999999',
+        '123456789', '987654321', '112233445', '111222333', '123123123',
+        '121212121', '234567890', '345678901', '456789012', '567890123'
+      ]);
+      
+      // Blokada wprowadzania jakichkolwiek znaków innych niż cyfry
+      phoneInput.addEventListener('keydown', (e) => {
+        // Zezwól na klawisze kontrolne
+        const allowedKeys = [
+          'Backspace', 'Delete', 'Tab', 'Escape', 'Enter',
+          'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown',
+          'Home', 'End'
+        ];
+        
+        // Zezwól na skróty klawiszowe (Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X)
+        if (e.ctrlKey || e.metaKey) {
+          return;
+        }
+        
+        // Jeśli to jest dozwolony klawisz kontrolny, pozwól
+        if (allowedKeys.includes(e.key)) {
+          return;
+        }
+        
+        // Jeśli to NIE jest cyfra, zablokuj
+        if (e.key.length === 1 && (e.key < '0' || e.key > '9')) {
+          e.preventDefault();
+        }
+      });
+      
+      // Dodatkowa ochrona - blokada paste z nie-cyframi
+      phoneInput.addEventListener('paste', (e) => {
+        e.preventDefault();
+        const pastedText = (e.clipboardData || window.clipboardData).getData('text');
+        const numbersOnly = pastedText.replace(/\D/g, '').slice(0, 9);
+        phoneInput.value = numbersOnly;
+      });
+      
+      // Dodatkowa ochrona - czyszczenie inputu z nie-cyfr (na wypadek autofill)
+      phoneInput.addEventListener('input', (e) => {
+        const value = e.target.value;
+        const numbersOnly = value.replace(/\D/g, '').slice(0, 9);
+        if (value !== numbersOnly) {
+          e.target.value = numbersOnly;
+        }
+      });
       
       let isSubmitting = false;
 
@@ -206,10 +257,36 @@
           return;
         }
         
-        // Walidacja telefonu - tylko cyfry i opcjonalnie +
-        const phoneRegex = /^[+\d\s]*$/;
-        if (!phoneRegex.test(data.phone)) {
-          alert('Telefon może zawierać tylko cyfry, spacje i znak +');
+        // Walidacja telefonu - tylko cyfry
+        const phone = data.phone.trim();
+        const phoneRegex = /^\d+$/;
+        if (!phoneRegex.test(phone)) {
+          alert('Telefon może zawierać tylko cyfry');
+          return;
+        }
+        
+        // Walidacja długości telefonu - dokładnie 9 cyfr
+        if (phone.length !== 9) {
+          alert('Numer telefonu musi składać się z dokładnie 9 cyfr');
+          return;
+        }
+        
+        // Walidacja pierwszej cyfry - nie może zaczynać się od 1, 2, 3, 4
+        const firstDigit = phone[0];
+        if (['1', '2', '3', '4'].includes(firstDigit)) {
+          alert('Numer telefonu komórkowego musi zaczynać się od cyfry 5, 6, 7, 8 lub 9');
+          return;
+        }
+        
+        // Sprawdzenie czy numer zaczyna się od "48"
+        if (phone.startsWith('48')) {
+          alert('Proszę podać numer telefonu bez polskiego prefiksu (+48). Wprowadź tylko 9 cyfr numeru komórkowego.');
+          return;
+        }
+        
+        // Sprawdzenie blacklisty randomowych numerów
+        if (invalidPhoneNumbers.has(phone)) {
+          alert('Proszę podać rzeczywisty numer telefonu');
           return;
         }
         
@@ -225,14 +302,15 @@
         const firstName = nameParts[0];
         const lastName = nameParts.slice(1).join(' ');
         
-        let phone = data.phone.replace(/\s+/g, '');
+        // Dodanie prefiksu +48 do numeru telefonu (jako STRING)
+        const phoneWithPrefix = '+48' + phone;
         
         const processedData = {
           fullName,
           firstName,
           lastName,
           email: data.email,
-          phone: phone,
+          phone: phoneWithPrefix,
           consent: data.consent === 'on'
         };
 
